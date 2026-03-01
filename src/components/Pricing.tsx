@@ -29,8 +29,8 @@ const formatCLP = (n: number) => n.toLocaleString("es-CL");
 const plans: Plan[] = [
   {
     emoji: "🦷",
-    name: "Esencial",
-    tagline: "Que los pacientes te encuentren y te escriban",
+    name: "Presencia",
+    tagline: "Tu consulta visible en Google, 24/7",
     monthly: 19990,
     annual: 15990,
     annualSaving: 48000,
@@ -38,67 +38,66 @@ const plans: Plan[] = [
     ctaStyle: "outline",
     featuresTitle: "Qué incluye",
     features: [
-      { text: "Web de una sola página (todo en un scroll)", included: true },
+      { text: "Web profesional de una página", included: true },
       { text: "WhatsApp integrado y llamada directa", included: true },
-      { text: "Tus tratamientos con descripción", included: true },
       { text: "Perfil del doctor con foto y especialidad", included: true },
+      { text: "Tratamientos con descripción", included: true },
       { text: "Horarios y mapa de ubicación", included: true },
-      { text: "Optimizada para Google", included: true },
+      { text: "Optimizada para Google (SEO base)", included: true },
       { text: "Responsive (celular y computador)", included: true },
-      { text: "1 cambio de contenido al mes", included: true },
-      { text: "Soporte en 72h", included: true },
-      { text: "Google Analytics y Meta Pixel", included: false },
-      { text: "Galería de casos", included: false },
-      { text: "Antes/después de tratamientos", included: false },
+      { text: "Hosting, dominio .cl y SSL incluidos", included: true },
+      { text: "Mantenimiento técnico y seguridad continua", included: true },
+      { text: "Informe mensual de rendimiento", included: false },
+      { text: "Galería de casos y antes/después", included: false },
+      { text: "Blog SEO automático con IA", included: false },
     ],
     featured: false,
   },
   {
-    emoji: "😁",
-    name: "Profesional",
-    tagline: "Muestra tus casos y genera confianza real",
+    emoji: "📈",
+    name: "Crecimiento",
+    tagline: "Tu web trabaja por ti mientras atiendes pacientes",
     monthly: 34990,
     annual: 27990,
     annualSaving: 84000,
     cta: "Comenzar ahora",
     ctaStyle: "filled",
-    featuresTitle: "Todo lo Esencial más",
+    featuresTitle: "Todo lo de Presencia más",
     features: [
-      { text: "1 página con todas las secciones incluidas", included: true, highlight: true },
       { text: "Slider antes/después de tratamientos", included: true, highlight: true },
       { text: "Galería de casos reales", included: true, highlight: true },
-      { text: "Testimonios de pacientes", included: true },
-      { text: "Página por cada tratamiento", included: true },
+      { text: "Informe mensual de rendimiento automático", included: true, highlight: true },
       { text: "Diplomas y certificaciones", included: true },
+      { text: "Testimonios de pacientes", included: true },
       { text: "Formas de pago visibles", included: true },
       { text: "Preguntas frecuentes", included: true },
       { text: "Google Analytics y Meta Pixel", included: true },
-      { text: "2 cambios de contenido al mes", included: true },
-      { text: "Soporte en 48h", included: true },
-      { text: "Blog con tips dentales (IA)", included: false },
+      { text: "2 cambios de contenido bajo demanda", included: true },
+      { text: "Blog SEO automático con IA", included: false },
+      { text: "Soporte prioritario", included: false },
     ],
     featured: true,
   },
   {
-    emoji: "💎",
-    name: "Premium",
-    tagline: "La clínica dental más completa de tu ciudad",
+    emoji: "🤖",
+    name: "Autopilot",
+    tagline: "Marketing dental automatizado con IA",
     monthly: 49990,
     annual: 39990,
     annualSaving: 120000,
     cta: "Comenzar ahora",
-    ctaStyle: "premium",
-    featuresTitle: "Todo lo Profesional más",
+    ctaStyle: "outline",
+    featuresTitle: "Todo lo de Crecimiento más",
     features: [
-      { text: "Soporte prioritario (24h)", included: true, highlight: true, star: true },
-      { text: "Blog con tips dentales generados por IA", included: true, highlight: true, star: true },
-      { text: "4 cambios de contenido al mes", included: true, highlight: true, star: true },
-      { text: "Páginas ilimitadas", included: true },
-      { text: "Convenios, Fonasa e isapres", included: true },
+      { text: "Blog SEO automático (2 artículos/mes con IA)", included: true, highlight: true, star: true },
+      { text: "Biblioteca de contenido que crece cada mes", included: true, highlight: true, star: true },
+      { text: "Informe mensual + recomendaciones IA", included: true, highlight: true, star: true },
+      { text: "Hasta 10 páginas", included: true },
       { text: "Perfil de cada doctor del equipo", included: true },
+      { text: "Convenios, Fonasa e isapres", included: true },
       { text: "Pop-up de captación de pacientes", included: true },
-      { text: "Sección de tecnología de la clínica", included: true },
-      { text: "Contadores de experiencia", included: true },
+      { text: "Soporte prioritario (respuesta en el día)", included: true },
+      { text: "4 cambios de contenido bajo demanda", included: true },
     ],
     featured: false,
   },
@@ -135,7 +134,7 @@ const includes = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
       </svg>
     ),
-    text: "Sin contratos largos",
+    text: "Mantenimiento automático",
   },
 ];
 
@@ -153,13 +152,13 @@ export default function Pricing() {
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14">
-          <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Planes simples</span>
+          <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Planes</span>
           <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Todo incluido,{" "}
-            <span className="gradient-text">sin sorpresas</span>
+            Tu web dental{" "}
+            <span className="gradient-text">funcionando en automático</span>
           </h2>
           <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg max-w-lg mx-auto">
-            Hosting, dominio, mantenimiento y soporte. Elige tu plan y empieza hoy.
+            Hosting, dominio .cl, seguridad y mantenimiento incluido en todos los planes. Una agencia tradicional cobra $800.000+ por algo similar.
           </p>
         </div>
 
@@ -215,7 +214,7 @@ export default function Pricing() {
                 {/* Featured ribbon */}
                 {plan.featured && (
                   <div className="bg-accent text-white text-center text-[11px] font-bold uppercase tracking-widest py-1.5">
-                    ⭐ Más elegido por dentistas
+                    ⭐ Recomendado
                   </div>
                 )}
 
@@ -307,7 +306,7 @@ export default function Pricing() {
             <span className="text-text-muted text-xs sm:text-sm font-medium">🚀 Web lista en 48 horas</span>
           </div>
           <p className="text-text-muted text-xs max-w-md mx-auto">
-            Todos los planes incluyen hosting, dominio .cl, certificado SSL y soporte técnico. Precios en CLP, facturación mensual o anual.
+            Todos los planes incluyen hosting, dominio .cl, SSL, mantenimiento automático y soporte. Sin contratos, cancela cuando quieras.
           </p>
         </div>
       </div>

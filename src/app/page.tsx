@@ -7,7 +7,7 @@ import Benefits from "@/components/Benefits";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 import AddOns from "@/components/AddOns";
-import Testimonials from "@/components/Testimonials";
+
 import AboutUs from "@/components/AboutUs";
 import FAQ from "@/components/FAQ";
 import CtaFinal from "@/components/CtaFinal";
@@ -28,7 +28,7 @@ export default function Home() {
         <HowItWorks />
         <Pricing />
         <AddOns />
-        <Testimonials />
+
         <AboutUs />
         <FAQ />
         <CtaFinal />

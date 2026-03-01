@@ -10,7 +10,7 @@ const benefits = [
       </svg>
     ),
     title: "Aparece en Google",
-    description: "Cuando alguien busca \"dentista en La Serena\", tu consulta aparece. Web rápida y optimizada para que Google te muestre primero.",
+    description: "Cuando alguien busca \"dentista cerca de mí\", tu consulta aparece. Web optimizada para SEO y velocidad de carga.",
   },
   {
     icon: (
@@ -19,8 +19,8 @@ const benefits = [
         <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.61.609l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.591-.838-6.312-2.234l-.44-.366-3.065 1.028 1.028-3.065-.366-.44A9.953 9.953 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
       </svg>
     ),
-    title: "WhatsApp 24/7",
-    description: "Botón de WhatsApp visible en toda la web. Tus pacientes te escriben a cualquier hora — tú despiertas con citas agendadas.",
+    title: "Consultas por WhatsApp",
+    description: "Botón de WhatsApp visible en toda tu web. Tus pacientes te escriben directo — sin formularios, sin esperas.",
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const benefits = [
       </svg>
     ),
     title: "Lista en 48 horas",
-    description: "Nada de meses de espera. En 2 días hábiles tienes tu web publicada, funcionando y recibiendo visitas.",
+    description: "Nada de semanas de espera. En 2 días hábiles tu web está publicada, funcionando y lista para recibir pacientes.",
   },
   {
     icon: (
@@ -55,8 +55,8 @@ export default function Benefits() {
         <div className="text-center mb-10 sm:mb-16">
           <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">¿Por qué DentalWeb?</span>
           <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Tu consulta online,{" "}
-            <span className="gradient-text">sin complicaciones</span>
+            Tu consulta visible en Google,{" "}
+            <span className="gradient-text">sin esfuerzo técnico</span>
           </h2>
         </div>
 

@@ -7,45 +7,29 @@ const projects = [
   {
     name: "Dr. Alejandro Vergara",
     specialty: "Implantología Oral",
-    location: "Av. Balmaceda 2195, La Serena",
+    location: "La Serena",
     url: "https://demo-dental-2ys2.vercel.app",
-    resultBadge: "+45 consultas/mes",
-    challenge: "Consulta nueva sin presencia online. El Dr. Vergara dependía exclusivamente del boca a boca y no tenía forma de que pacientes potenciales lo encontraran en internet.",
-    solution: "Diseñamos una web profesional enfocada en implantología, con SEO local optimizado para La Serena, integración de WhatsApp para agendar citas y testimonios de pacientes reales.",
-    results: ["+45 consultas mensuales desde la web", "Primer paciente en menos de 72 horas", "Top 3 en Google para 'implantes dentales La Serena'"],
-    timeline: "48 horas",
   },
   {
     name: "Mi Primera Clínica",
     specialty: "Salud Integral Infantil",
     location: "La Serena",
     url: "https://demo-mi-primera-clinica.vercel.app",
-    resultBadge: "+60% agenda",
-    challenge: "Clínica infantil sin diferenciación online. Competía contra clínicas generales sin poder comunicar su especialización en salud dental infantil.",
-    solution: "Creamos una web con diseño amigable y colorido orientado a padres, destacando la especialización infantil, el equipo pediátrico y un sistema de reserva fácil por WhatsApp.",
-    results: ["+60% de ocupación en agenda", "Reducción de llamadas repetitivas en un 40%", "Posicionamiento como referente infantil en La Serena"],
-    timeline: "48 horas",
   },
   {
     name: "Dra. Valentina Herrera",
     specialty: "Odontología Integral",
-    location: "Balmaceda 461, La Serena",
+    location: "La Serena",
     url: "https://demo-dental-cl.vercel.app",
-    resultBadge: "+35 pacientes/mes",
-    challenge: "Dependía solo de referidos y no tenía canal digital. La Dra. Herrera perdía pacientes que buscaban dentista en Google y no la encontraban.",
-    solution: "Desarrollamos su web con foco en odontología integral, mostrando todos sus servicios, ubicación con mapa interactivo y botón de WhatsApp prominente para contacto inmediato.",
-    results: ["+35 pacientes nuevos por mes", "80% de contactos llegan por WhatsApp", "Presencia profesional que genera confianza desde el primer click"],
-    timeline: "48 horas",
   },
 ];
 
 export default function Portfolio() {
   const ref = useInView();
   const [selected, setSelected] = useState<typeof projects[number] | null>(null);
-  const [showCaseStudy, setShowCaseStudy] = useState(false);
 
-  const close = useCallback(() => { setSelected(null); setShowCaseStudy(false); }, []);
-  const openProject = useCallback((p: typeof projects[number]) => { setSelected(p); setShowCaseStudy(false); }, []);
+  const close = useCallback(() => { setSelected(null); }, []);
+  const openProject = useCallback((p: typeof projects[number]) => { setSelected(p); }, []);
 
   useEffect(() => {
     if (!selected) return;
@@ -68,13 +52,13 @@ export default function Portfolio() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
-            <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Webs reales</span>
+            <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Portfolio</span>
             <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Dentistas que ya están{" "}
-              <span className="gradient-text">captando pacientes online</span>
+              Así se ven las webs que{" "}
+              <span className="gradient-text">diseñamos para dentistas</span>
             </h2>
             <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg">
-              Cada sitio está diseñado para la especialidad y personalidad de cada doctor. Haz click para explorarlos.
+              Cada web está adaptada a la especialidad y marca del doctor. Haz click para explorar.
             </p>
           </div>
 
@@ -139,20 +123,12 @@ export default function Portfolio() {
                       </svg>
                     </div>
                     <p className="text-sm text-text-muted">{p.specialty}</p>
-                    <div className="mt-2 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-xs text-text-muted">
-                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                        </svg>
-                        {p.location}
-                      </div>
-                      <span className="inline-flex items-center gap-1 bg-accent/10 text-accent text-[11px] font-bold px-2 py-1 rounded-full">
-                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                        </svg>
-                        {p.resultBadge}
-                      </span>
+                    <div className="mt-2 flex items-center gap-2 text-xs text-text-muted">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                      </svg>
+                      {p.location}
                     </div>
                   </div>
                 </div>
@@ -186,17 +162,6 @@ export default function Portfolio() {
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
-                <button
-                  type="button"
-                  onClick={() => setShowCaseStudy(!showCaseStudy)}
-                  className="hidden sm:flex text-xs font-medium transition-colors items-center gap-1 px-2.5 py-1.5 rounded-lg border border-border hover:bg-white"
-                  style={{ color: showCaseStudy ? "var(--accent)" : "var(--text-muted)" }}
-                >
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                  </svg>
-                  Caso de estudio
-                </button>
                 <a
                   href={selected.url}
                   target="_blank"
@@ -221,55 +186,6 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* Case study panel */}
-            {showCaseStudy && (
-              <div className="bg-[#F8FAFC] border-b border-border px-4 sm:px-6 py-4 sm:py-5 shrink-0 overflow-y-auto max-h-[40vh]">
-                <div className="max-w-4xl mx-auto">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1 bg-accent/10 text-accent text-xs font-bold px-2.5 py-1 rounded-full">
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                      </svg>
-                      {selected.resultBadge}
-                    </span>
-                    <span className="text-xs text-text-muted">Entrega en {selected.timeline}</span>
-                  </div>
-                  <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
-                    <div>
-                      <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-[10px] font-bold">1</span>
-                        Desafío
-                      </h4>
-                      <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">{selected.challenge}</p>
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-[10px] font-bold">2</span>
-                        Solución
-                      </h4>
-                      <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">{selected.solution}</p>
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <span className="w-5 h-5 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold">3</span>
-                        Resultados
-                      </h4>
-                      <ul className="space-y-1.5">
-                        {selected.results.map((r) => (
-                          <li key={r} className="flex items-start gap-1.5 text-xs sm:text-sm text-text-secondary">
-                            <svg className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                            </svg>
-                            {r}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
             {/* Iframe */}
             <div className="flex-1 bg-white overflow-hidden">
               <iframe
@@ -280,18 +196,7 @@ export default function Portfolio() {
             </div>
 
             {/* Bottom bar — mobile */}
-            <div className="sm:hidden flex items-center justify-between px-4 py-3 bg-[#F1F5F9] border-t border-border shrink-0">
-              <button
-                type="button"
-                onClick={() => setShowCaseStudy(!showCaseStudy)}
-                className="text-xs font-medium flex items-center gap-1"
-                style={{ color: showCaseStudy ? "var(--accent)" : "var(--text-muted)" }}
-              >
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                </svg>
-                Caso
-              </button>
+            <div className="sm:hidden flex items-center justify-end px-4 py-3 bg-[#F1F5F9] border-t border-border shrink-0">
               <div className="flex items-center gap-3">
                 <a
                   href={selected.url}

@@ -26,19 +26,19 @@ export default function Hero() {
         <div className="fade-up">
           <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-8">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            La web de tu consulta, lista en 48 hrs
+            Webs profesionales para dentistas en Chile
           </div>
         </div>
 
         <h1 className="fade-up fade-up-delay-1 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight">
-          ¿Tus pacientes te buscan en Google{" "}
-          <span className="gradient-text">y no te encuentran?</span>
+          Tus pacientes te buscan en Google.{" "}
+          <span className="gradient-text">¿Te encuentran a ti o a tu competencia?</span>
         </h1>
 
         <p className="fade-up fade-up-delay-2 mt-4 sm:mt-8 text-base sm:text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-          Te diseñamos una web profesional en{" "}
-          <span className="text-text-primary font-semibold">48 horas</span>{" "}
-          para que tus pacientes te encuentren en Google, vean tus servicios y te escriban por WhatsApp — incluso mientras duermes.
+          Diseñamos tu web dental en{" "}
+          <span className="text-text-primary font-semibold">48 horas</span>.{" "}
+          Tú atiendes pacientes, nosotros nos encargamos de que te encuentren en Google y te escriban por WhatsApp.
         </p>
 
         <div className="fade-up fade-up-delay-3 mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
@@ -46,7 +46,7 @@ export default function Hero() {
             href="#demo"
             className="group inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-light text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-base sm:text-lg font-bold transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5"
           >
-            Ver cómo se vería MI web
+            Ver cómo se vería mi web
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
@@ -64,7 +64,7 @@ export default function Hero() {
             <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            Sin contratos largos
+            Sin contratos de permanencia
           </div>
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">

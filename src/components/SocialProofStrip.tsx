@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "@/hooks/useInView";
 
 const STATS = [
-  { value: 50, suffix: "+", label: "Webs Creadas" },
-  { value: 48, suffix: "h", label: "Entrega" },
-  { value: 4.9, suffix: "★", label: "Satisfacción", decimals: 1 },
-  { value: 150, suffix: "k", prefix: "$", label: "Desde" },
+  { value: 48, suffix: "h", prefix: "", label: "Tu web lista", decimals: 0 },
+  { value: 100, suffix: "%", prefix: "", label: "Foco en dentistas", decimals: 0 },
+  { value: 0, suffix: "", prefix: "$", label: "Costo de setup", decimals: 0 },
+  { value: 24, suffix: "/7", prefix: "", label: "Soporte WhatsApp", decimals: 0 },
 ];
 
 function useCountUp(target: number, active: boolean, decimals = 0) {

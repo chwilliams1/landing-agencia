@@ -10,34 +10,34 @@ const faqs = [
       "Sí. Una vez que nos envías la información de tu consulta (textos, fotos y logo), diseñamos y publicamos tu web en un máximo de 2 días hábiles. Si necesitas algo más complejo, te avisamos antes de comenzar.",
   },
   {
-    question: "¿Puedo elegir el diseño de mi web?",
+    question: "¿Qué incluye la mensualidad?",
     answer:
-      "Por supuesto. Te mostramos un preview personalizado basado en tu especialidad y marca. Puedes pedir ajustes de colores, fotos, textos y estructura hasta que quedes 100% conforme.",
+      "Hosting, dominio .cl, certificado SSL, mantenimiento técnico automático, actualizaciones de seguridad y soporte por WhatsApp. Tu web se mantiene funcionando sin que hagas nada. Los planes Crecimiento y Autopilot agregan informes de rendimiento y contenido generado por IA.",
   },
   {
-    question: "¿Qué incluye la mensualidad de $25.000?",
+    question: "¿Tengo que hacer algo después de que mi web esté lista?",
     answer:
-      "Hosting ultrarrápido, dominio .cl, certificado SSL (candado verde), soporte técnico por WhatsApp y correcciones menores de contenido. Todo lo que necesitas para mantener tu web funcionando sin preocuparte de nada.",
+      "No. Tu web funciona en modo automático: hosting, seguridad, velocidad y mantenimiento corren por nuestra cuenta. Si en algún momento quieres actualizar textos, fotos o agregar contenido, nos escribes y lo hacemos. Con el plan Autopilot, además se publican artículos SEO automáticamente cada mes.",
   },
   {
-    question: "¿Puedo cancelar cuando quiera?",
+    question: "¿Qué diferencia hay entre los planes?",
     answer:
-      "Sí, sin contratos de permanencia. Si decides cancelar, tu web se desactiva al final del periodo pagado. Sin penalizaciones ni letra chica.",
+      "Presencia te da lo esencial para existir en Google. Crecimiento agrega galería de casos, antes/después, diplomas e informes mensuales de rendimiento automáticos. Autopilot suma un blog SEO con artículos generados por IA que crece cada mes y mejora tu posicionamiento en Google. Puedes subir de plan cuando quieras.",
+  },
+  {
+    question: "¿Qué pasa si cancelo mi plan?",
+    answer:
+      "Sin contratos ni penalizaciones. Tu web se desactiva al final del periodo pagado. Eso sí, perderás el hosting, dominio, posicionamiento en Google y — en Autopilot — la biblioteca de artículos SEO acumulados. Muchos clientes prefieren mantener el plan porque el valor crece con el tiempo.",
   },
   {
     question: "¿Mi web va a aparecer en Google?",
     answer:
-      "Todas nuestras webs están optimizadas para SEO básico: velocidad de carga, etiquetas correctas, diseño responsive y contenido estructurado. Esto ayuda a que Google te indexe y te muestre cuando buscan dentistas en tu zona.",
+      "Todas nuestras webs están optimizadas para SEO: velocidad de carga, etiquetas correctas, diseño responsive y contenido estructurado. Con el plan Autopilot, el blog con artículos de IA mejora tu posicionamiento cada mes de forma acumulativa.",
   },
   {
-    question: "¿Qué son los extras y necesito alguno?",
+    question: "¿Qué es el informe mensual de rendimiento?",
     answer:
-      "Los extras son funcionalidades adicionales como galería antes/después, blog dental, sistema de reservas online, entre otros. No son obligatorios — tu web funciona perfectamente sin ellos. Pero si quieres potenciar tu presencia online, son una gran inversión.",
-  },
-  {
-    question: "¿Qué pasa si necesito cambios después de los 30 días?",
-    answer:
-      "Los cambios menores de texto, fotos o información de contacto están siempre incluidos en la mensualidad. Para cambios mayores de estructura o nuevas funcionalidades, te cotizamos aparte con precio preferencial por ser cliente.",
+      "Es un reporte automático que recibes cada mes con las métricas de tu web: visitas, clics en WhatsApp, páginas más vistas y tendencias. Disponible en los planes Crecimiento y Autopilot. No tienes que hacer nada, llega solo.",
   },
 ];
 

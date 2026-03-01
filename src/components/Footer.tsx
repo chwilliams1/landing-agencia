@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold text-white">DentalWeb</h3>
             <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xs">
-              Páginas web profesionales para dentistas en La Serena y todo Chile. Tu consulta visible, tus pacientes conectados.
+              Diseñamos webs profesionales exclusivamente para dentistas. Tu consulta visible en Google, tus pacientes a un click.
             </p>
           </div>
 
@@ -45,11 +45,11 @@ export default function Footer() {
             <h4 className="font-semibold text-gray-300 text-sm mb-3">Links</h4>
             <ul className="space-y-1 text-sm text-gray-400">
               <li><a href="#demo" className="hover:text-teal-300 transition-colors inline-block py-1.5">Demo interactiva</a></li>
-              <li><a href="#portfolio" className="hover:text-teal-300 transition-colors inline-block py-1.5">Ejemplos reales</a></li>
+              <li><a href="#portfolio" className="hover:text-teal-300 transition-colors inline-block py-1.5">Portfolio</a></li>
               <li><a href="#proceso" className="hover:text-teal-300 transition-colors inline-block py-1.5">¿Cómo funciona?</a></li>
               <li><a href="#precio" className="hover:text-teal-300 transition-colors inline-block py-1.5">Planes y precios</a></li>
-              <li><a href="#extras" className="hover:text-teal-300 transition-colors inline-block py-1.5">Extras premium</a></li>
-              <li><a href="#testimonios" className="hover:text-teal-300 transition-colors inline-block py-1.5">Testimonios</a></li>
+              <li><a href="#funcionalidades" className="hover:text-teal-300 transition-colors inline-block py-1.5">Funcionalidades</a></li>
+              <li><a href="#nosotros" className="hover:text-teal-300 transition-colors inline-block py-1.5">Nosotros</a></li>
               <li><a href="#faq" className="hover:text-teal-300 transition-colors inline-block py-1.5">Preguntas frecuentes</a></li>
             </ul>
           </div>

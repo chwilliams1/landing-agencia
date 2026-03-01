@@ -18,17 +18,17 @@ export default function CtaFinal() {
         <div className="fade-up">
           <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-8">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            Respondemos en menos de 1 hora
+            Respuesta rápida por WhatsApp
           </div>
         </div>
 
         <h2 className="fade-up fade-up-delay-1 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-          Tu competencia ya tiene web.{" "}
-          <span className="gradient-text whitespace-nowrap">¿Y tú?</span>
+          Mientras lees esto, tus pacientes{" "}
+          <span className="gradient-text">buscan dentista en Google</span>
         </h2>
 
         <p className="fade-up fade-up-delay-2 mt-4 sm:mt-6 text-text-secondary text-base sm:text-lg lg:text-xl max-w-xl mx-auto leading-relaxed">
-          Cada día sin presencia online son pacientes que eligen a otro dentista. Escríbenos hoy y en 48 horas tu consulta aparece en Google.
+          Si no te encuentran a ti, eligen a otro. Escríbenos hoy y en 48 horas tu consulta aparece con una web profesional.
         </p>
 
         <div className="fade-up fade-up-delay-3 mt-10">
@@ -66,7 +66,7 @@ export default function CtaFinal() {
             <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            Respuesta inmediata
+            Respuesta rápida
           </div>
         </div>
       </div>

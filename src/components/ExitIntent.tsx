@@ -78,7 +78,7 @@ export default function ExitIntent() {
         </h3>
 
         <p className="mt-3 text-text-secondary text-sm sm:text-base leading-relaxed">
-          Obtén una <span className="font-semibold text-accent">evaluación gratuita</span> de tu presencia online. Sin compromiso, respondemos en menos de 1 hora.
+          Obtén una <span className="font-semibold text-accent">evaluación gratuita</span> de tu presencia online. Sin compromiso, respuesta rápida por WhatsApp.
         </p>
 
         <a

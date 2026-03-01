@@ -35,9 +35,9 @@ export default function Terminos() {
           <section>
             <h2 className="text-lg font-bold text-text-primary mb-3">2. Precios y formas de pago</h2>
             <ul className="list-disc pl-5 space-y-2">
-              <li><strong>Plan Esencial:</strong> $19.990 CLP/mes. Incluye hosting, dominio .cl y soporte técnico.</li>
-              <li><strong>Plan Profesional:</strong> $34.990 CLP/mes. Incluye todo lo del plan Esencial más funcionalidades avanzadas.</li>
-              <li><strong>Plan Premium:</strong> $49.990 CLP/mes. Incluye todas las funcionalidades disponibles con soporte prioritario.</li>
+              <li><strong>Plan Presencia:</strong> $19.990 CLP/mes. Incluye hosting, dominio .cl, SSL y mantenimiento automático.</li>
+              <li><strong>Plan Crecimiento:</strong> $34.990 CLP/mes. Incluye todo lo de Presencia más informes de rendimiento y funcionalidades avanzadas.</li>
+              <li><strong>Plan Autopilot:</strong> $49.990 CLP/mes. Incluye todo lo de Crecimiento más blog SEO automático con IA y soporte prioritario.</li>
               <li><strong>Descuento anual:</strong> 20% de descuento en todos los planes al contratar el plan anual.</li>
               <li>Los precios pueden variar según servicios adicionales (add-ons) contratados.</li>
               <li>Los pagos se realizan mediante transferencia bancaria o los medios habilitados al momento de la contratación.</li>
