@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import IntakeWizard from "@/components/IntakeWizard";
 
 export const metadata: Metadata = {
-  title: "Intake — Web Dental",
+  title: "Cuéntanos sobre tu consulta — DentalWeb",
   robots: { index: false, follow: false },
 };
 
