@@ -43,19 +43,19 @@ export default function Portfolio() {
 
   return (
     <>
-      <section id="portfolio" className="py-24 sm:py-32 relative overflow-hidden" ref={ref}>
+      <section id="portfolio" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" ref={ref}>
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-16">
             <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Portfolio</span>
-            <h2 className="fade-up fade-up-delay-1 mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+            <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
               Así se ven nuestras webs
             </h2>
-            <p className="fade-up fade-up-delay-2 mt-4 text-text-secondary text-lg">
+            <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg">
               Cada web es única, diseñada para la especialidad y personalidad del dentista.
             </p>
           </div>
@@ -150,7 +150,7 @@ export default function Portfolio() {
               <div className="w-3 h-3 rounded-full bg-green-400/50" />
             </div>
             <div className="flex-1 mx-2">
-              <div className="bg-white border border-border/50 rounded-lg px-3 py-1.5 text-sm text-text-muted text-center truncate flex items-center justify-center gap-2 max-w-md mx-auto">
+              <div className="bg-white border border-border/50 rounded-lg px-3 py-1.5 text-xs sm:text-sm text-text-muted text-center truncate flex items-center justify-center gap-2 max-w-md mx-auto">
                 <svg className="w-3 h-3 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
@@ -171,7 +171,7 @@ export default function Portfolio() {
               </a>
               <button
                 onClick={close}
-                className="w-8 h-8 rounded-lg bg-white border border-border hover:bg-gray-100 flex items-center justify-center transition-colors"
+                className="w-10 h-10 sm:w-8 sm:h-8 rounded-lg bg-white border border-border hover:bg-gray-100 flex items-center justify-center transition-colors"
                 aria-label="Cerrar"
               >
                 <svg className="w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

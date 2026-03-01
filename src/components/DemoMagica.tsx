@@ -112,19 +112,19 @@ export default function DemoMagica() {
   const domain = name ? `${name.toLowerCase().replace(/\s+/g, "").replace(/[^a-z]/g, "")}.cl` : "tunombre.cl";
 
   return (
-    <section id="demo" className="py-24 sm:py-32 relative bg-bg-alt overflow-hidden" ref={ref}>
+    <section id="demo" className="py-16 sm:py-24 lg:py-32 relative bg-bg-alt overflow-hidden" ref={ref}>
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-accent/3 rounded-full blur-[100px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Demo Interactiva</span>
-          <h2 className="fade-up fade-up-delay-1 mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
             Mira cómo se vería{" "}
             <span className="gradient-text">tu web</span>
           </h2>
-          <p className="fade-up fade-up-delay-2 mt-4 text-text-secondary text-lg max-w-xl mx-auto">
+          <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg max-w-xl mx-auto">
             Ingresa tus datos y en segundos verás un preview real de tu página web dental personalizada.
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function DemoMagica() {
         <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
           {/* Form */}
           <div className="fade-up lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-bg-card border border-border rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+            <form onSubmit={handleSubmit} className="bg-bg-card border border-border rounded-2xl p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 shadow-sm">
               <div>
                 <label className="block text-sm font-medium text-text-secondary mb-2">
                   Nombre del doctor/a
@@ -215,7 +215,7 @@ export default function DemoMagica() {
               </div>
 
               {/* Mini website preview — scrollable */}
-              <div className="relative overflow-y-auto max-h-[600px]" style={{ background: showPreview ? "#fff" : "#F8FAFB" }}>
+              <div className="relative overflow-y-auto max-h-[400px] sm:max-h-[600px]" style={{ background: showPreview ? "#fff" : "#F8FAFB" }}>
                 {!showPreview ? (
                   <div className="flex items-center justify-center py-24 sm:py-32">
                     <div className="text-center px-4">

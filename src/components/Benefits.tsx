@@ -46,30 +46,30 @@ export default function Benefits() {
   const ref = useInView();
 
   return (
-    <section className="py-24 sm:py-32 relative bg-bg-alt overflow-hidden" ref={ref}>
+    <section className="py-16 sm:py-24 lg:py-32 relative bg-bg-alt overflow-hidden" ref={ref}>
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-16">
           <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Beneficios</span>
-          <h2 className="fade-up fade-up-delay-1 mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
             Todo lo que tu consulta necesita
           </h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {benefits.map((benefit, i) => (
             <div
               key={benefit.title}
-              className={`fade-up fade-up-delay-${i + 1} group bg-bg-card border border-border rounded-2xl p-6 sm:p-8 shadow-sm hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-300`}
+              className={`fade-up fade-up-delay-${i + 1} group bg-bg-card border border-border rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm hover:border-accent/30 hover:shadow-xl hover:shadow-accent/5 transition-all duration-300`}
             >
-              <div className="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-accent/10 rounded-xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-7 sm:[&>svg]:h-7">
                 {benefit.icon}
               </div>
-              <h3 className="mt-5 text-lg font-bold text-text-primary">{benefit.title}</h3>
-              <p className="mt-3 text-sm text-text-muted leading-relaxed">{benefit.description}</p>
+              <h3 className="mt-3 sm:mt-5 text-base sm:text-lg font-bold text-text-primary">{benefit.title}</h3>
+              <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-text-muted leading-relaxed">{benefit.description}</p>
             </div>
           ))}
         </div>
