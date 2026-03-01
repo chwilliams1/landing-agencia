@@ -64,7 +64,7 @@ export default function Pricing() {
             {/* Features grid */}
             <div className="p-5 sm:p-8 lg:p-10">
               <p className="text-sm font-semibold text-text-secondary uppercase tracking-wider mb-6">Todo incluido</p>
-              <div className="grid sm:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-3 sm:gap-y-4">
+              <div className="grid sm:grid-cols-2 gap-x-4 sm:gap-x-8 gap-y-3.5 sm:gap-y-4">
                 {included.map((feature) => (
                   <div key={feature} className="flex items-start gap-3">
                     <svg className="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

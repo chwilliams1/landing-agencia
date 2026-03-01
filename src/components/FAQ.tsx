@@ -60,7 +60,7 @@ export default function FAQ() {
           </h2>
         </div>
 
-        <div className="fade-up fade-up-delay-2 space-y-3">
+        <div className="fade-up fade-up-delay-2 space-y-2.5 sm:space-y-3">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
@@ -70,13 +70,13 @@ export default function FAQ() {
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? -1 : i)}
-                  className="w-full flex items-center justify-between gap-4 p-4 sm:p-5 text-left cursor-pointer"
+                  className="w-full min-h-12 flex items-center justify-between gap-4 p-4 sm:p-5 text-left cursor-pointer"
                 >
                   <span className="text-sm sm:text-base font-semibold text-text-primary">
                     {faq.question}
                   </span>
                   <svg
-                    className={`w-5 h-5 text-accent shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    className={`w-6 h-6 text-accent shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

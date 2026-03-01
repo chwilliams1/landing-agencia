@@ -91,22 +91,22 @@ export default function HowItWorks() {
         </div>
 
         {/* Mobile/Tablet: vertical timeline */}
-        <div className="lg:hidden space-y-6">
+        <div className="lg:hidden space-y-4 sm:space-y-6">
           {steps.map((step, i) => (
-            <div key={step.number} className={`fade-up fade-up-delay-${i + 1} flex gap-4`}>
+            <div key={step.number} className={`fade-up fade-up-delay-${i + 1} flex gap-3 sm:gap-4`}>
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-bg-card border-2 border-accent/30 rounded-full flex items-center justify-center text-accent shadow-md shrink-0 [&>svg]:w-5 [&>svg]:h-5">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 bg-bg-card border-2 border-accent/30 rounded-full flex items-center justify-center text-accent shadow-md shrink-0 [&>svg]:w-5 [&>svg]:h-5">
                   {step.icon}
                 </div>
                 {i < steps.length - 1 && (
                   <div className="w-0.5 flex-1 mt-2 bg-gradient-to-b from-accent/30 to-accent/10" />
                 )}
               </div>
-              <div className="pb-6 flex-1">
-                <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-accent/10 text-accent font-bold text-xs">
+              <div className="pb-4 sm:pb-6 flex-1 min-w-0">
+                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-accent/10 text-accent font-bold text-xs">
                   {step.number}
                 </span>
-                <h3 className="mt-1 text-base font-bold text-text-primary">{step.title}</h3>
+                <h3 className="mt-1.5 text-base font-bold text-text-primary">{step.title}</h3>
                 <p className="mt-1 text-sm text-text-muted leading-relaxed">{step.description}</p>
               </div>
             </div>

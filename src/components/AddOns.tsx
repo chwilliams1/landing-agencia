@@ -44,7 +44,7 @@ function BeforeAfterSlider() {
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
-      className="relative w-full aspect-[16/9] sm:aspect-[2/1] rounded-xl overflow-hidden cursor-col-resize select-none touch-none"
+      className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[2/1] rounded-xl overflow-hidden cursor-col-resize select-none touch-none"
     >
       {/* "Before" side */}
       <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100">
@@ -83,8 +83,8 @@ function BeforeAfterSlider() {
         className="absolute top-0 bottom-0 w-1 bg-white shadow-lg z-10"
         style={{ left: `${position}%`, transform: "translateX(-50%)" }}
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-xl flex items-center justify-center border-2 border-accent">
-          <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center border-2 border-accent cursor-grab active:cursor-grabbing">
+          <svg className="w-5 h-5 text-accent pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l4-4 4 4M8 15l4 4 4-4" />
           </svg>
         </div>
@@ -163,7 +163,7 @@ export default function AddOns() {
         {/* Featured: Before/After slider */}
         <div className="fade-up fade-up-delay-2 mb-6 sm:mb-8">
           <div className="bg-bg-card border border-accent/30 rounded-2xl overflow-hidden shadow-xl shadow-accent/5">
-            <div className="p-5 sm:p-6 lg:p-8">
+            <div className="p-5 sm:p-6 lg:p-8" role="region" aria-label="Galería Antes/Después con slider interactivo">
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 <h3 className="text-lg sm:text-xl font-bold text-text-primary">
                   Galería Antes / Después
@@ -188,7 +188,7 @@ export default function AddOns() {
                   href={consultarUrl("Galería Antes/Después")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent-light text-white font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 text-sm"
+                  className="inline-flex items-center gap-2 bg-accent hover:bg-accent-light text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 text-sm sm:text-base min-h-11"
                 >
                   Consultar
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -201,7 +201,7 @@ export default function AddOns() {
         </div>
 
         {/* Grid of other extras */}
-        <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">
           {extras.map((extra, i) => (
             <div
               key={extra.title}
@@ -221,7 +221,7 @@ export default function AddOns() {
                   href={consultarUrl(extra.title)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent hover:text-accent-light text-sm font-semibold inline-flex items-center gap-1 transition-colors"
+                  className="text-accent hover:text-accent-light text-sm font-semibold inline-flex items-center gap-1 transition-colors py-2 -my-2"
                 >
                   Consultar
                   <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
