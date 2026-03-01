@@ -60,6 +60,9 @@ export default function Portfolio() {
             <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg">
               Cada web está adaptada a la especialidad y marca del doctor. Haz click para explorar.
             </p>
+            <p className="fade-up fade-up-delay-2 mt-2 text-text-muted text-sm">
+              Estas son demos de ejemplo creadas por nuestro equipo, no resultados finales. Tu web será personalizada al 100% con tu marca.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
@@ -115,9 +118,12 @@ export default function Portfolio() {
                   {/* Info below preview */}
                   <div className="p-5 sm:p-6">
                     <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-bold text-text-primary group-hover:text-accent transition-colors">
-                        {p.name}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-bold text-text-primary group-hover:text-accent transition-colors">
+                          {p.name}
+                        </h3>
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-full leading-none border border-amber-200/50">Demo</span>
+                      </div>
                       <svg className="w-4 h-4 text-text-muted group-hover:text-accent transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                       </svg>
