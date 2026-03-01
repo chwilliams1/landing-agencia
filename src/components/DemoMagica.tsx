@@ -1159,7 +1159,7 @@ export default function DemoMagica() {
 
               {/* Mini website preview — scrollable + clickable */}
               <div
-                className={`relative overflow-y-auto max-h-[400px] sm:max-h-[600px] ${showPreview && viewMode === "after" ? "cursor-pointer group" : ""}`}
+                className={`relative overflow-y-auto max-h-[320px] sm:max-h-[450px] ${showPreview && viewMode === "after" ? "cursor-pointer group" : ""}`}
                 style={{ background: showPreview ? "#fff" : "#F8FAFB" }}
                 onClick={() => { if (showPreview && viewMode === "after") setShowModal(true); }}
               >

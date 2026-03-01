@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-padding-top: 5rem; /* offset for fixed navbar h-16/h-20 */
+}
+
 :root {
   --bg-base: #FFFFFF;
   --bg-alt: #F8FAFB;

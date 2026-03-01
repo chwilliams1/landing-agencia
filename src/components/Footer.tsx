@@ -59,6 +59,11 @@ export default function Footer() {
           <p className="text-gray-400 text-xs">
             &copy; {currentYear} DentalWeb. Todos los derechos reservados.
           </p>
+          <div className="flex items-center gap-4 text-xs">
+            <a href="/privacidad" className="text-gray-500 hover:text-teal-300 transition-colors">Política de Privacidad</a>
+            <span className="text-gray-600">|</span>
+            <a href="/terminos" className="text-gray-500 hover:text-teal-300 transition-colors">Términos de Servicio</a>
+          </div>
           <p className="text-gray-500 text-xs">
             Hecho con cariño en La Serena
           </p>

@@ -66,14 +66,14 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-20">
-        {/* Logo */}
-        <a href="#" className="font-extrabold text-lg sm:text-xl text-navy tracking-tight">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center h-16 sm:h-20">
+        {/* Logo — fixed width to balance CTA on the right */}
+        <a href="#" className="font-extrabold text-lg sm:text-xl text-navy tracking-tight md:w-40">
           Dental<span className="text-accent">Web</span>
         </a>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
+        {/* Desktop links — centered */}
+        <div className="hidden md:flex items-center justify-center gap-1 flex-1">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -89,8 +89,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Hamburger (mobile) */}
-        <div className="flex items-center">
+        {/* Hamburger (mobile) — right side balances logo */}
+        <div className="flex items-center justify-end md:w-40 ml-auto md:ml-0">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-bg-alt transition-colors"
