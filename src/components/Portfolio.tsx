@@ -136,58 +136,86 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Fullscreen modal */}
+      {/* Modal overlay */}
       {selected && (
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-black/60 backdrop-blur-sm animate-in fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-10 bg-black/70 backdrop-blur-sm"
           onClick={(e) => { if (e.target === e.currentTarget) close(); }}
         >
-          {/* Top bar */}
-          <div className="flex items-center gap-3 px-4 py-3 bg-[#F1F5F9] border-b border-border shrink-0">
-            <div className="flex gap-1.5">
-              <button onClick={close} className="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 transition-colors" aria-label="Cerrar" />
-              <div className="w-3 h-3 rounded-full bg-yellow-400/50" />
-              <div className="w-3 h-3 rounded-full bg-green-400/50" />
-            </div>
-            <div className="flex-1 mx-2">
-              <div className="bg-white border border-border/50 rounded-lg px-3 py-1.5 text-xs sm:text-sm text-text-muted text-center truncate flex items-center justify-center gap-2 max-w-md mx-auto">
-                <svg className="w-3 h-3 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                </svg>
-                {selected.url.replace("https://", "")}
+          {/* Floating window */}
+          <div className="relative flex flex-col w-full h-full max-w-6xl rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10">
+            {/* Browser chrome */}
+            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-[#F1F5F9] border-b border-border shrink-0">
+              <div className="hidden sm:flex gap-1.5">
+                <button onClick={close} className="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 transition-colors" aria-label="Cerrar" />
+                <div className="w-3 h-3 rounded-full bg-yellow-400/50" />
+                <div className="w-3 h-3 rounded-full bg-green-400/50" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="bg-white border border-border/50 rounded-lg px-3 py-1.5 text-xs sm:text-sm text-text-muted text-center truncate flex items-center justify-center gap-2 max-w-md mx-auto">
+                  <svg className="w-3 h-3 text-green-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                  </svg>
+                  <span className="truncate">{selected.url.replace("https://", "")}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3">
+                <a
+                  href={selected.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:flex text-xs text-accent hover:text-accent-light font-medium transition-colors items-center gap-1"
+                >
+                  Abrir
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                </a>
+                <button
+                  onClick={close}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-border hover:bg-gray-100 transition-colors text-text-secondary"
+                  aria-label="Cerrar"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span className="text-xs font-medium hidden sm:inline">Cerrar</span>
+                </button>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+
+            {/* Iframe */}
+            <div className="flex-1 bg-white overflow-hidden">
+              <iframe
+                src={selected.url}
+                title={`${selected.name} — vista completa`}
+                className="w-full h-full border-0"
+              />
+            </div>
+
+            {/* Bottom bar — mobile */}
+            <div className="sm:hidden flex items-center justify-between px-4 py-3 bg-[#F1F5F9] border-t border-border shrink-0">
               <a
                 href={selected.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-accent hover:text-accent-light font-medium transition-colors flex items-center gap-1"
+                className="text-xs text-accent font-medium flex items-center gap-1"
               >
-                Abrir
+                Abrir en navegador
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
               </a>
               <button
                 onClick={close}
-                className="w-10 h-10 sm:w-8 sm:h-8 rounded-lg bg-white border border-border hover:bg-gray-100 flex items-center justify-center transition-colors"
-                aria-label="Cerrar"
+                className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white border border-border text-text-primary font-medium text-sm"
               >
-                <svg className="w-4 h-4 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
+                Cerrar
               </button>
             </div>
-          </div>
-
-          {/* Iframe */}
-          <div className="flex-1 bg-white overflow-hidden">
-            <iframe
-              src={selected.url}
-              title={`${selected.name} — vista completa`}
-              className="w-full h-full border-0"
-            />
           </div>
         </div>
       )}
