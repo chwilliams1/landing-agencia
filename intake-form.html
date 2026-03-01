@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intake — Web Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f7f5f2;--card:#ffffff;--primary:#1a6b5a;--primary-light:#e6f2ef;
+  --accent:#c4935e;--text:#1f2937;--muted:#7c8490;--border:#e8e4df;
+  --danger:#e04848;--radius:14px;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,#1a6b5a,#13544a,#1a6b5a);color:#fff;text-align:center;padding:44px 20px 52px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:140%;height:80px;background:var(--bg);border-radius:50%}
+.hero h1{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;margin-bottom:6px}
+.hero p{opacity:.85;font-size:.92rem;max-width:460px;margin:0 auto}
+
+/* ── Steps Nav ── */
+.steps-nav{display:flex;justify-content:center;gap:8px;padding:18px 16px 10px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.steps-nav::-webkit-scrollbar{display:none}
+.dot{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:100px;border:1.5px solid var(--border);background:#fafaf8;font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;transition:.25s}
+.dot.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.dot.done{background:var(--primary-light);color:var(--primary);border-color:var(--primary)}
+.dot-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;background:var(--border);color:var(--muted);transition:.25s}
+.dot.active .dot-num{background:rgba(255,255,255,.25);color:#fff}
+.dot.done .dot-num{background:var(--primary);color:#fff}
+
+/* ── Card ── */
+.container{max-width:680px;margin:0 auto;padding:0 16px 40px}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:28px 22px 22px;margin-top:14px;display:none;animation:fadeIn .3s ease}
+.card.show{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.card-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;color:var(--primary);margin-bottom:2px}
+.card-sub{font-size:.82rem;color:var(--muted);margin-bottom:20px}
+
+/* ── Form Elements ── */
+label.field-label{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+.hint{font-size:.75rem;color:var(--muted);margin-top:2px;font-style:italic}
+input[type=text],input[type=tel],input[type=email],input[type=url],textarea,select{
+  width:100%;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;
+  font-family:'DM Sans',sans-serif;font-size:.88rem;background:#fafaf8;color:var(--text);
+  outline:none;transition:.2s
+}
+input:focus,textarea:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,107,90,.1)}
+::placeholder{color:var(--muted);font-size:.82rem}
+textarea{resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{margin-bottom:16px}
+
+/* ── Pills ── */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill span{display:inline-flex;align-items:center;gap:5px;padding:9px 16px;border-radius:100px;border:1.5px solid var(--border);background:#fafaf8;font-size:.82rem;font-weight:500;cursor:pointer;transition:.2s;user-select:none}
+.pill span:hover{border-color:var(--primary);background:var(--primary-light)}
+.pill input:checked+span{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+/* ── Visual Cards (style) ── */
+.vis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.vis-card{position:relative}
+.vis-card input{position:absolute;opacity:0;pointer-events:none}
+.vis-card label{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px 8px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:.2s;background:var(--card)}
+.vis-card label:hover{border-color:var(--primary);background:var(--primary-light)}
+.vis-card input:checked+label{border-color:var(--primary);background:var(--primary-light);box-shadow:0 0 0 3px rgba(26,107,90,.12)}
+.vis-emoji{font-size:1.6rem;margin-bottom:4px}
+.vis-name{font-size:.78rem;font-weight:700;color:var(--text)}
+.vis-desc{font-size:.68rem;color:var(--muted)}
+
+/* ── Palette Cards ── */
+.pal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.pal-card{position:relative}
+.pal-card input{position:absolute;opacity:0;pointer-events:none}
+.pal-card label{display:block;padding:14px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:.2s;background:var(--card)}
+.pal-card label:hover{border-color:var(--primary)}
+.pal-card input:checked+label{border-color:var(--primary);background:var(--primary-light);box-shadow:0 0 0 3px rgba(26,107,90,.12)}
+.pal-circles{display:flex;align-items:center;gap:4px;margin-bottom:6px}
+.pal-circle{border-radius:50%;transition:transform .2s}
+.pal-card label:hover .pal-circle{transform:scale(1.08)}
+.pal-name{font-size:.78rem;font-weight:700;color:var(--text)}
+.pal-desc{font-size:.68rem;color:var(--muted)}
+
+/* ── Package Cards ── */
+.pkg-card{position:relative;margin-bottom:12px}
+.pkg-card input{position:absolute;opacity:0;pointer-events:none}
+.pkg-card label{display:flex;flex-direction:column;padding:20px;border:2px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:.2s;background:var(--card)}
+.pkg-card label:hover{border-color:var(--primary)}
+.pkg-card input:checked+label{border-color:var(--primary);background:var(--primary-light);box-shadow:0 0 0 3px rgba(26,107,90,.12)}
+.pkg-badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:.7rem;font-weight:700;width:fit-content;margin-bottom:8px}
+.pkg-badge.grey{background:#e8e4df;color:var(--muted)}
+.pkg-badge.green{background:var(--primary);color:#fff}
+.pkg-badge.gold{background:linear-gradient(135deg,#c4935e,#daa520);color:#fff}
+.pkg-emoji{font-size:1.4rem;margin-bottom:4px}
+.pkg-name{font-size:1rem;font-weight:700;color:var(--text)}
+.pkg-tagline{font-size:.82rem;color:var(--muted);font-style:italic;margin-bottom:2px}
+.pkg-desc{font-size:.78rem;color:var(--muted);margin-bottom:10px}
+.pkg-list{border-top:1px solid var(--border);padding-top:10px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.pkg-list span{font-size:.78rem;color:var(--text);display:flex;align-items:center;gap:4px}
+.pkg-list span::before{content:'✓';color:var(--primary);font-weight:700;font-size:.7rem}
+
+/* ── Schedule Cards ── */
+.sched-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.sched-card{position:relative}
+.sched-card input{position:absolute;opacity:0;pointer-events:none}
+.sched-card label{display:block;padding:14px;border:2px solid var(--border);border-radius:12px;cursor:pointer;transition:.2s;background:var(--card)}
+.sched-card label:hover{border-color:var(--primary)}
+.sched-card input:checked+label{border-color:var(--primary);background:var(--primary-light);box-shadow:0 0 0 3px rgba(26,107,90,.12)}
+.sched-name{font-size:.8rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.sched-row{display:flex;justify-content:space-between;font-size:.75rem;padding:2px 0}
+.sched-day{font-weight:500;color:var(--text)}
+.sched-time{color:var(--muted);font-variant-numeric:tabular-nums}
+.sched-closed{color:var(--danger);font-weight:600}
+#custom-schedule-wrap{display:none;margin-bottom:16px}
+#custom-schedule-wrap.show{display:block}
+
+/* ── Navigation Buttons ── */
+.nav-btns{display:flex;gap:10px;justify-content:flex-end;border-top:1px solid var(--border);padding-top:18px;margin-top:22px}
+.btn{padding:11px 28px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;border:none;cursor:pointer;transition:.2s}
+.btn-back{background:var(--border);color:var(--text)}
+.btn-back:hover{background:#d6d2cd}
+.btn-next{background:var(--primary);color:#fff;box-shadow:0 4px 12px rgba(26,107,90,.25)}
+.btn-next:hover{background:#15594a}
+.btn-generate{background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(196,147,94,.3)}
+.btn-generate:hover{background:#b3844f}
+
+/* ── Output ── */
+.output-wrap{display:none;margin-top:20px}
+.output-wrap.show{display:block}
+.output-box{background:#1e293b;color:#e2e8f0;border-radius:var(--radius);padding:20px;font-family:'DM Mono','Fira Code',monospace;font-size:.78rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;max-height:500px;overflow-y:auto;position:relative}
+.btn-copy{margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:100px;background:var(--primary);color:#fff;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;border:none;cursor:pointer;transition:.2s}
+.btn-copy:hover{background:#15594a}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--primary);color:#fff;padding:12px 24px;border-radius:100px;font-size:.88rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:transform .3s ease;z-index:999;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── Responsive ── */
+@media(max-width:500px){
+  .row2{grid-template-columns:1fr}
+  .pal-grid,.sched-grid{grid-template-columns:1fr}
+  .vis-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  .hero h1{font-size:1.35rem}
+  .card{padding:22px 16px 18px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>🦷 Intake — Web Dental</h1>
+  <p>Completa los datos de tu cliente y genera un prompt listo para Claude Code.</p>
+</div>
+
+<!-- Steps Nav -->
+<div class="steps-nav" id="stepsNav">
+  <div class="dot active" onclick="goStep(1)"><span class="dot-num">1</span> Clinica</div>
+  <div class="dot" onclick="goStep(2)"><span class="dot-num">2</span> Servicios</div>
+  <div class="dot" onclick="goStep(3)"><span class="dot-num">3</span> Estilo</div>
+  <div class="dot" onclick="goStep(4)"><span class="dot-num">4</span> Paquete</div>
+  <div class="dot" onclick="goStep(5)"><span class="dot-num">5</span> Extras</div>
+</div>
+
+<form id="intakeForm" autocomplete="off">
+<div class="container">
+
+<!-- ════════════ PASO 1 ════════════ -->
+<div class="card show" id="step1">
+  <div class="card-title">Cuéntanos de tu clínica</div>
+  <div class="card-sub">Información básica de contacto</div>
+
+  <div class="field">
+    <label class="field-label">Nombre del consultorio *</label>
+    <input type="text" name="consultorio" placeholder="Ej: Clínica Dental Sonrisa Perfecta" required>
+  </div>
+  <div class="field">
+    <label class="field-label">Nombre del doctor/a *</label>
+    <input type="text" name="doctor" placeholder="Dr./Dra. Nombre Apellido" required>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿A qué te dedicas?</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="dedica" value="General"><span>🦷 General</span></label>
+      <label class="pill"><input type="radio" name="dedica" value="Ortodoncia"><span>😁 Ortodoncia</span></label>
+      <label class="pill"><input type="radio" name="dedica" value="Implantes"><span>🔩 Implantes</span></label>
+      <label class="pill"><input type="radio" name="dedica" value="Estética"><span>✨ Estética</span></label>
+      <label class="pill"><input type="radio" name="dedica" value="Pediatría"><span>👶 Pediatría</span></label>
+      <label class="pill"><input type="radio" name="dedica" value="Varias"><span>🏥 Varias</span></label>
+    </div>
+  </div>
+
+  <div class="row2 field">
+    <div>
+      <label class="field-label">WhatsApp *</label>
+      <input type="tel" name="whatsapp" placeholder="+56 9 1234 5678" required>
+    </div>
+    <div>
+      <label class="field-label">Email</label>
+      <input type="email" name="email" placeholder="contacto@clinica.cl">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Dirección *</label>
+    <input type="text" name="direccion" placeholder="Calle, número, ciudad, país" required>
+  </div>
+  <div class="field">
+    <label class="field-label">Redes sociales</label>
+    <textarea name="redes" rows="2" placeholder="Instagram: ...&#10;Facebook: ..."></textarea>
+  </div>
+
+  <div class="nav-btns">
+    <button type="button" class="btn btn-next" onclick="next()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ════════════ PASO 2 ════════════ -->
+<div class="card" id="step2">
+  <div class="card-title">¿Qué servicios ofreces?</div>
+  <div class="card-sub">Selecciona todos los que apliquen</div>
+
+  <div class="field">
+    <label class="field-label">Servicios</label>
+    <div class="pills">
+      <label class="pill"><input type="checkbox" name="servicios" value="Limpieza"><span>🪥 Limpieza</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Blanqueamiento"><span>⚡ Blanqueamiento</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Brackets"><span>😬 Brackets</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Alineadores"><span>🔲 Alineadores</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Implantes"><span>🔩 Implantes</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Carillas"><span>✨ Carillas</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Endodoncia"><span>🦷 Endodoncia</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Extracciones"><span>🩹 Extracciones</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Prótesis"><span>🫦 Prótesis</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Niños"><span>👶 Niños</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Diseño de sonrisa"><span>💎 Diseño de sonrisa</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Urgencias"><span>🚨 Urgencias</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Periodoncia"><span>🩺 Periodoncia</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Radiografías/3D"><span>📷 Radiografías/3D</span></label>
+      <label class="pill"><input type="checkbox" name="servicios" value="Cirugía maxilofacial"><span>🏥 Cirugía maxilofacial</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Servicio estrella</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="estrella" value="Blanqueamiento"><span>Blanqueamiento</span></label>
+      <label class="pill"><input type="radio" name="estrella" value="Ortodoncia invisible"><span>Ortodoncia invisible</span></label>
+      <label class="pill"><input type="radio" name="estrella" value="Implantes rápidos"><span>Implantes rápidos</span></label>
+      <label class="pill"><input type="radio" name="estrella" value="Diseño de sonrisa"><span>Diseño de sonrisa</span></label>
+      <label class="pill"><input type="radio" name="estrella" value="Pediatría sin miedo"><span>Pediatría sin miedo</span></label>
+      <label class="pill"><input type="radio" name="estrella" value="Tecnología 3D"><span>Tecnología 3D</span></label>
+      <label class="pill"><input type="radio" name="estrella" value="Otro"><span>Otro</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿A quién atiendes más?</label>
+    <div class="pills">
+      <label class="pill"><input type="checkbox" name="publico" value="Familias"><span>👨‍👩‍👧 Familias</span></label>
+      <label class="pill"><input type="checkbox" name="publico" value="Jóvenes"><span>🧑 Jóvenes</span></label>
+      <label class="pill"><input type="checkbox" name="publico" value="Adultos"><span>👔 Adultos</span></label>
+      <label class="pill"><input type="checkbox" name="publico" value="Mayores"><span>👵 Mayores</span></label>
+      <label class="pill"><input type="checkbox" name="publico" value="Niños"><span>👶 Niños</span></label>
+      <label class="pill"><input type="checkbox" name="publico" value="Premium"><span>💎 Premium</span></label>
+      <label class="pill"><input type="checkbox" name="publico" value="Todo público"><span>🌐 Todo público</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Formas de pago</label>
+    <div class="pills">
+      <label class="pill"><input type="checkbox" name="pagos" value="Efectivo"><span>💵 Efectivo</span></label>
+      <label class="pill"><input type="checkbox" name="pagos" value="Tarjetas"><span>💳 Tarjetas</span></label>
+      <label class="pill"><input type="checkbox" name="pagos" value="Transferencia"><span>🏦 Transferencia</span></label>
+      <label class="pill"><input type="checkbox" name="pagos" value="Cuotas"><span>📋 Cuotas</span></label>
+      <label class="pill"><input type="checkbox" name="pagos" value="Seguros"><span>🤝 Seguros</span></label>
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button type="button" class="btn btn-back" onclick="prev()">← Atrás</button>
+    <button type="button" class="btn btn-next" onclick="next()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ════════════ PASO 3 ════════════ -->
+<div class="card" id="step3">
+  <div class="card-title">¿Cómo quieres que se vea?</div>
+  <div class="card-sub">Elige el estilo visual de tu web</div>
+
+  <div class="field">
+    <label class="field-label">Estilo visual</label>
+    <div class="vis-grid">
+      <div class="vis-card"><input type="radio" name="estilo" value="Minimalista" id="st1"><label for="st1"><span class="vis-emoji">🏛️</span><span class="vis-name">Minimalista</span><span class="vis-desc">Limpio, espacioso</span></label></div>
+      <div class="vis-card"><input type="radio" name="estilo" value="Premium" id="st2"><label for="st2"><span class="vis-emoji">👑</span><span class="vis-name">Premium</span><span class="vis-desc">Lujoso, sofisticado</span></label></div>
+      <div class="vis-card"><input type="radio" name="estilo" value="Cálido" id="st3"><label for="st3"><span class="vis-emoji">☀️</span><span class="vis-name">Cálido</span><span class="vis-desc">Cercano, acogedor</span></label></div>
+      <div class="vis-card"><input type="radio" name="estilo" value="Profesional" id="st4"><label for="st4"><span class="vis-emoji">🏢</span><span class="vis-name">Profesional</span><span class="vis-desc">Serio, confiable</span></label></div>
+      <div class="vis-card"><input type="radio" name="estilo" value="Juvenil" id="st5"><label for="st5"><span class="vis-emoji">🎨</span><span class="vis-name">Juvenil</span><span class="vis-desc">Dinámico, vibrante</span></label></div>
+      <div class="vis-card"><input type="radio" name="estilo" value="Infantil" id="st6"><label for="st6"><span class="vis-emoji">🧸</span><span class="vis-name">Infantil</span><span class="vis-desc">Divertido, niños</span></label></div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Paleta de colores</label>
+    <div class="pal-grid">
+      <!-- Confianza Clínica -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Confianza Clínica — Principal #2563eb, Secundario #e0f2fe, Acento #f59e0b, Fondo #f8fafc, Texto #1e293b" id="p1">
+        <label for="p1">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#2563eb"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#e0f2fe"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#f59e0b"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#f8fafc;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#1e293b"></div>
+          </div>
+          <div class="pal-name">Confianza Clínica</div>
+          <div class="pal-desc">Azul médico + dorado. Profesional y confiable</div>
+        </label>
+      </div>
+      <!-- Sonrisa Fresca -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Sonrisa Fresca — Principal #0d9488, Secundario #ccfbf1, Acento #0ea5e9, Fondo #f0fdfa, Texto #134e4a" id="p2">
+        <label for="p2">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#0d9488"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#ccfbf1"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#0ea5e9"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#f0fdfa;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#134e4a"></div>
+          </div>
+          <div class="pal-name">Sonrisa Fresca</div>
+          <div class="pal-desc">Turquesa + celeste. Moderna y fresca</div>
+        </label>
+      </div>
+      <!-- Elegancia Dental -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Elegancia Dental — Principal #1a1a2e, Secundario #16213e, Acento #c9a84c, Fondo #fafaf9, Texto #1a1a2e" id="p3">
+        <label for="p3">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#1a1a2e"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#16213e"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#c9a84c"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#fafaf9;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#1a1a2e"></div>
+          </div>
+          <div class="pal-name">Elegancia Dental</div>
+          <div class="pal-desc">Azul noche + dorado. Luxury y premium</div>
+        </label>
+      </div>
+      <!-- Naturaleza y Salud -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Naturaleza y Salud — Principal #166534, Secundario #dcfce7, Acento #a16207, Fondo #f7fdf9, Texto #14532d" id="p4">
+        <label for="p4">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#166534"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#dcfce7"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#a16207"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#f7fdf9;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#14532d"></div>
+          </div>
+          <div class="pal-name">Naturaleza y Salud</div>
+          <div class="pal-desc">Verde + ámbar. Orgánico y saludable</div>
+        </label>
+      </div>
+      <!-- Sonrisa Cálida -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Sonrisa Cálida — Principal #9a3412, Secundario #fef3c7, Acento #d97706, Fondo #fffbeb, Texto #451a03" id="p5">
+        <label for="p5">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#9a3412"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#fef3c7"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#d97706"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#fffbeb;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#451a03"></div>
+          </div>
+          <div class="pal-name">Sonrisa Cálida</div>
+          <div class="pal-desc">Terracota + crema. Acogedor y familiar</div>
+        </label>
+      </div>
+      <!-- Pediatría Feliz -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Pediatría Feliz — Principal #7c3aed, Secundario #ede9fe, Acento #06b6d4, Fondo #faf5ff, Texto #4c1d95" id="p6">
+        <label for="p6">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#7c3aed"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#ede9fe"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#06b6d4"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#faf5ff;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#4c1d95"></div>
+          </div>
+          <div class="pal-name">Pediatría Feliz</div>
+          <div class="pal-desc">Violeta + cyan. Divertida e infantil</div>
+        </label>
+      </div>
+      <!-- Estética Blanca -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Estética Blanca — Principal #111827, Secundario #f3f4f6, Acento #e5e7eb, Fondo #ffffff, Texto #111827" id="p7">
+        <label for="p7">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#111827"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#f3f4f6"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#e5e7eb"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#ffffff;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#111827"></div>
+          </div>
+          <div class="pal-name">Estética Blanca</div>
+          <div class="pal-desc">Blanco + negro. Ultra minimalista</div>
+        </label>
+      </div>
+      <!-- Rosa Dental -->
+      <div class="pal-card">
+        <input type="radio" name="paleta" value="Rosa Dental — Principal #be185d, Secundario #fce7f3, Acento #ec4899, Fondo #fdf2f8, Texto #831843" id="p8">
+        <label for="p8">
+          <div class="pal-circles">
+            <div class="pal-circle" style="width:32px;height:32px;background:#be185d"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#fce7f3"></div>
+            <div class="pal-circle" style="width:32px;height:32px;background:#ec4899"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#fdf2f8;border:1px solid #e8e4df"></div>
+            <div class="pal-circle" style="width:20px;height:20px;background:#831843"></div>
+          </div>
+          <div class="pal-name">Rosa Dental</div>
+          <div class="pal-desc">Rosa + fucsia. Femenina y moderna</div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Tienes logo?</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="logo" value="Sí, lo envío"><span>✅ Sí, lo envío</span></label>
+      <label class="pill"><input type="radio" name="logo" value="No tengo"><span>❌ No tengo</span></label>
+      <label class="pill"><input type="radio" name="logo" value="Quiero renovarlo"><span>🔄 Quiero renovarlo</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Slogan o frase</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="slogan" value="Tu sonrisa, nuestra pasión"><span>Tu sonrisa, nuestra pasión</span></label>
+      <label class="pill"><input type="radio" name="slogan" value="Sonrisas que transforman"><span>Sonrisas que transforman</span></label>
+      <label class="pill"><input type="radio" name="slogan" value="Tecnología y confianza"><span>Tecnología y confianza</span></label>
+      <label class="pill"><input type="radio" name="slogan" value="Cuidamos tu sonrisa"><span>Cuidamos tu sonrisa</span></label>
+      <label class="pill"><input type="radio" name="slogan" value="Cada sonrisa importa"><span>Cada sonrisa importa</span></label>
+      <label class="pill"><input type="radio" name="slogan" value="Sin slogan"><span>Sin slogan</span></label>
+    </div>
+    <input type="text" name="slogan_custom" placeholder="O escribe el tuyo aquí..." style="margin-top:8px">
+  </div>
+
+  <div class="nav-btns">
+    <button type="button" class="btn btn-back" onclick="prev()">← Atrás</button>
+    <button type="button" class="btn btn-next" onclick="next()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ════════════ PASO 4 ════════════ -->
+<div class="card" id="step4">
+  <div class="card-title">Elige tu tipo de web</div>
+  <div class="card-sub">Selecciona el paquete que más te guste — solo haz clic</div>
+
+  <div class="field">
+    <div class="pkg-card">
+      <input type="radio" name="paquete" value="Esencial: Hero con foto, Servicios, Sobre el doctor, Testimonios, Horarios + Mapa, WhatsApp flotante, Contacto" id="pkg1">
+      <label for="pkg1">
+        <div class="pkg-badge grey">📄 Esencial</div>
+        <div class="pkg-emoji">📄</div>
+        <div class="pkg-name">Una página, directo al grano</div>
+        <div class="pkg-tagline">Landing page con todo lo necesario para que te encuentren y te contacten</div>
+        <div class="pkg-list">
+          <span>Hero con foto</span><span>Servicios</span><span>Sobre el doctor</span><span>Testimonios</span><span>Horarios + Mapa</span><span>WhatsApp flotante</span><span>Contacto</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="pkg-card">
+      <input type="radio" name="paquete" value="Completa: Hero con foto, Servicios, Sobre el doctor, Testimonios, Horarios + Mapa, WhatsApp flotante, Contacto, Galería de fotos, Antes y después, FAQ, Reserva de citas, Página de servicios" id="pkg2">
+      <label for="pkg2">
+        <div class="pkg-badge green">⭐ Popular</div>
+        <div class="pkg-emoji">🌐</div>
+        <div class="pkg-name">Completa — la más elegida</div>
+        <div class="pkg-tagline">Sitio profesional con múltiples secciones para transmitir confianza total</div>
+        <div class="pkg-list">
+          <span>Todo lo Esencial</span><span>Galería de fotos</span><span>Antes y después</span><span>FAQ</span><span>Reserva de citas</span><span>Página de servicios</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="pkg-card">
+      <input type="radio" name="paquete" value="Premium: Hero con foto, Servicios, Sobre el doctor, Testimonios, Horarios + Mapa, WhatsApp flotante, Contacto, Galería de fotos, Antes y después, FAQ, Reserva de citas, Página de servicios, Blog/Tips, Precios/Tarifas, Equipo médico, Animaciones premium, Chat en vivo" id="pkg3">
+      <label for="pkg3">
+        <div class="pkg-badge gold">💎 Premium</div>
+        <div class="pkg-emoji">🚀</div>
+        <div class="pkg-name">Premium — máximo nivel</div>
+        <div class="pkg-tagline">Web de alta gama con todas las funcionalidades y animaciones premium</div>
+        <div class="pkg-list">
+          <span>Todo lo Completa</span><span>Blog/Tips</span><span>Precios/Tarifas</span><span>Equipo médico</span><span>Animaciones premium</span><span>Chat en vivo</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Contacto</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="contacto" value="WhatsApp directo"><span>💬 WhatsApp directo</span></label>
+      <label class="pill"><input type="radio" name="contacto" value="Formulario → Email"><span>📧 Formulario → Email</span></label>
+      <label class="pill"><input type="radio" name="contacto" value="Ambos"><span>💬📧 Ambos</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Horario de atención</label>
+    <div class="sched-grid">
+      <div class="sched-card">
+        <input type="radio" name="horario" value="Horario clásico: L-V 9:00-18:00 / Sáb 9:00-13:00 / Dom Cerrado" id="h1">
+        <label for="h1">
+          <div class="sched-name">Horario clásico</div>
+          <div class="sched-row"><span class="sched-day">Lun - Vie</span><span class="sched-time">9:00 - 18:00</span></div>
+          <div class="sched-row"><span class="sched-day">Sábado</span><span class="sched-time">9:00 - 13:00</span></div>
+          <div class="sched-row"><span class="sched-day">Domingo</span><span class="sched-closed">Cerrado</span></div>
+        </label>
+      </div>
+      <div class="sched-card">
+        <input type="radio" name="horario" value="Horario extendido: L-V 8:00-20:00 / Sáb 9:00-14:00 / Dom Cerrado" id="h2">
+        <label for="h2">
+          <div class="sched-name">Horario extendido</div>
+          <div class="sched-row"><span class="sched-day">Lun - Vie</span><span class="sched-time">8:00 - 20:00</span></div>
+          <div class="sched-row"><span class="sched-day">Sábado</span><span class="sched-time">9:00 - 14:00</span></div>
+          <div class="sched-row"><span class="sched-day">Domingo</span><span class="sched-closed">Cerrado</span></div>
+        </label>
+      </div>
+      <div class="sched-card">
+        <input type="radio" name="horario" value="Lunes a sábado completo: L-S 9:00-19:00 / Dom Cerrado" id="h3">
+        <label for="h3">
+          <div class="sched-name">Lunes a sábado completo</div>
+          <div class="sched-row"><span class="sched-day">Lun - Sáb</span><span class="sched-time">9:00 - 19:00</span></div>
+          <div class="sched-row"><span class="sched-day">Domingo</span><span class="sched-closed">Cerrado</span></div>
+        </label>
+      </div>
+      <div class="sched-card">
+        <input type="radio" name="horario" value="Apertura tarde: L-V 10:00-20:00 / Sáb 10:00-15:00 / Dom Cerrado" id="h4">
+        <label for="h4">
+          <div class="sched-name">Apertura tarde</div>
+          <div class="sched-row"><span class="sched-day">Lun - Vie</span><span class="sched-time">10:00 - 20:00</span></div>
+          <div class="sched-row"><span class="sched-day">Sábado</span><span class="sched-time">10:00 - 15:00</span></div>
+          <div class="sched-row"><span class="sched-day">Domingo</span><span class="sched-closed">Cerrado</span></div>
+        </label>
+      </div>
+    </div>
+    <div class="sched-card" style="margin-bottom:4px">
+      <input type="radio" name="horario" value="custom" id="h5">
+      <label for="h5">
+        <div class="sched-name">✏️ Mi horario es diferente</div>
+      </label>
+    </div>
+    <div id="custom-schedule-wrap">
+      <input type="text" name="horario_custom" placeholder="Ej: L-V 8:30-17:30 / Sáb 10:00-14:00">
+    </div>
+  </div>
+
+  <div class="nav-btns">
+    <button type="button" class="btn btn-back" onclick="prev()">← Atrás</button>
+    <button type="button" class="btn btn-next" onclick="next()">Siguiente →</button>
+  </div>
+</div>
+
+<!-- ════════════ PASO 5 ════════════ -->
+<div class="card" id="step5">
+  <div class="card-title">Últimos detalles</div>
+  <div class="card-sub">Casi listo — solo un par de cosas más</div>
+
+  <div class="field">
+    <label class="field-label">¿Tienes fotos propias?</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="fotos" value="Sí, envío todo"><span>📸 Sí, envío todo</span></label>
+      <label class="pill"><input type="radio" name="fotos" value="Solo del doctor"><span>🤳 Solo del doctor</span></label>
+      <label class="pill"><input type="radio" name="fotos" value="Usar stock"><span>🖼️ Usar stock</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">¿Fotos de antes y después?</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="antes_despues" value="Sí"><span>✅ Sí</span></label>
+      <label class="pill"><input type="radio" name="antes_despues" value="No tengo"><span>❌ No tengo</span></label>
+      <label class="pill"><input type="radio" name="antes_despues" value="Pronto"><span>🔜 Pronto</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Años de experiencia</label>
+    <div class="pills">
+      <label class="pill"><input type="radio" name="experiencia" value="1-5 años"><span>1-5 años</span></label>
+      <label class="pill"><input type="radio" name="experiencia" value="5-10 años"><span>5-10 años</span></label>
+      <label class="pill"><input type="radio" name="experiencia" value="10-20 años"><span>10-20 años</span></label>
+      <label class="pill"><input type="radio" name="experiencia" value="+20 años"><span>+20 años</span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Bio del doctor</label>
+    <textarea name="bio" rows="3" placeholder="Breve biografía profesional. Si no la tienes, la generaremos con IA."></textarea>
+    <div class="hint">Si no la tienes, la generaremos con IA</div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Testimonios</label>
+    <textarea name="testimonios" rows="3" placeholder="Escribe 2-3 testimonios reales de pacientes. Si no tienes, déjalo vacío."></textarea>
+    <div class="hint">Escribe 2-3 testimonios reales. Si no tienes, déjalo vacío.</div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Referencia visual</label>
+    <input type="url" name="referencia" placeholder="https://ejemplo.com — una web que te guste como referencia">
+  </div>
+
+  <div class="field">
+    <label class="field-label">Notas extra</label>
+    <textarea name="notas" rows="2" placeholder="Algo más que debamos saber..."></textarea>
+  </div>
+
+  <div class="nav-btns">
+    <button type="button" class="btn btn-back" onclick="prev()">← Atrás</button>
+    <button type="button" class="btn btn-generate" onclick="generate()">🚀 Generar Prompt</button>
+  </div>
+</div>
+
+<!-- ══ Output ══ -->
+<div class="output-wrap" id="outputWrap">
+  <pre class="output-box" id="outputBox"></pre>
+  <button type="button" class="btn-copy" onclick="copyIt()">📋 Copiar Prompt</button>
+</div>
+
+</div><!-- /container -->
+</form>
+
+<!-- Toast -->
+<div class="toast" id="toast">✓ Copiado al portapapeles</div>
+
+<script>
+let step = 1;
+const total = 5;
+
+function showStep(n) {
+  for (let i = 1; i <= total; i++) {
+    document.getElementById('step' + i).classList.toggle('show', i === n);
+  }
+  const dots = document.querySelectorAll('#stepsNav .dot');
+  dots.forEach((d, i) => {
+    d.classList.remove('active', 'done');
+    if (i + 1 === n) d.classList.add('active');
+    else if (i + 1 < n) d.classList.add('done');
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function next() {
+  if (step < total) { step++; showStep(step); }
+}
+function prev() {
+  if (step > 1) { step--; showStep(step); }
+}
+function goStep(n) {
+  step = n;
+  showStep(step);
+}
+
+// Custom schedule toggle
+document.querySelectorAll('input[name="horario"]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.getElementById('custom-schedule-wrap').classList.toggle('show', r.value === 'custom');
+  });
+});
+
+// Helper: extract form values
+function g(name) {
+  const els = document.querySelectorAll(`[name="${name}"]`);
+  if (!els.length) return '';
+  const first = els[0];
+  if (first.type === 'radio') {
+    const checked = document.querySelector(`[name="${name}"]:checked`);
+    return checked ? checked.value : '';
+  }
+  if (first.type === 'checkbox') {
+    return Array.from(document.querySelectorAll(`[name="${name}"]:checked`)).map(c => c.value).join(', ');
+  }
+  return first.value.trim();
+}
+
+function generate() {
+  const slogan = g('slogan_custom') || g('slogan');
+  const horario = g('horario') === 'custom' ? g('horario_custom') : g('horario');
+
+  const prompt = `# BRIEF SITIO WEB DENTAL — PROMPT PARA CLAUDE CODE
+
+## INSTRUCCIÓN
+Crea un sitio web profesional, responsive (mobile-first) y moderno para esta clínica dental. Usa los datos, colores y estructura indicados abajo. El resultado debe ser un sitio completo, listo para producción, con animaciones suaves y diseño atractivo.
+
+## DATOS DE LA CLÍNICA
+- Consultorio: ${g('consultorio')}
+- Doctor/a: ${g('doctor')}
+- Especialidad: ${g('dedica')}
+- WhatsApp: ${g('whatsapp')}
+- Email: ${g('email') || 'No proporcionado'}
+- Dirección: ${g('direccion')}
+- Redes sociales: ${g('redes') || 'No proporcionadas'}
+
+## SERVICIOS
+- Servicios ofrecidos: ${g('servicios') || 'No especificados'}
+- Servicio estrella: ${g('estrella') || 'No especificado'}
+- Público objetivo: ${g('publico') || 'No especificado'}
+- Formas de pago: ${g('pagos') || 'No especificadas'}
+
+## DISEÑO VISUAL
+- Estilo visual: ${g('estilo') || 'No seleccionado'}
+- Paleta de colores: ${g('paleta') || 'No seleccionada'}
+- Logo: ${g('logo') || 'No especificado'}
+- Slogan: ${slogan || 'No especificado'}
+
+## ESTRUCTURA DE LA WEB
+- Paquete: ${g('paquete') || 'No seleccionado'}
+- Método de contacto: ${g('contacto') || 'No especificado'}
+- Horario: ${horario || 'No especificado'}
+
+## CONTENIDO
+- Fotos propias: ${g('fotos') || 'No especificado'}
+- Fotos antes/después: ${g('antes_despues') || 'No especificado'}
+- Años de experiencia: ${g('experiencia') || 'No especificado'}
+- Bio del doctor: ${g('bio') || 'Generar con IA basándose en la especialidad y experiencia'}
+- Testimonios: ${g('testimonios') || 'Generar testimonios ficticios realistas'}
+- Referencia visual: ${g('referencia') || 'Ninguna'}
+- Notas adicionales: ${g('notas') || 'Ninguna'}
+
+## REQUISITOS TÉCNICOS (aplicar siempre)
+1. Mobile-first, 100% responsive
+2. SEO: meta tags, Open Graph, schema markup para dentista
+3. Velocidad: lazy loading, código optimizado
+4. Botón flotante de WhatsApp con link wa.me/${(g('whatsapp') || '').replace(/[^0-9]/g, '')}
+5. CTA claros: "Agendar Cita", "Llamar Ahora", "Escríbenos"
+6. Google Maps embebido con la dirección proporcionada
+7. Formulario de contacto funcional
+8. Animaciones suaves al scroll
+9. Colores consistentes con los hex exactos de la paleta seleccionada
+10. Tipografía profesional y legible
+11. Favicon y meta tags completos
+12. Accesibilidad básica (alt tags, contraste, semántica)
+
+## TONO DEL CONTENIDO
+Profesional pero cercano. Transmitir confianza y calidez. Evitar lenguaje demasiado técnico. Hablar directamente al paciente con empatía. Usar llamados a la acción que inviten sin presionar.`;
+
+  document.getElementById('outputBox').textContent = prompt;
+  document.getElementById('outputWrap').classList.add('show');
+  document.getElementById('outputWrap').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyIt() {
+  const text = document.getElementById('outputBox').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  });
+}
+</script>
+</body>
+</html>

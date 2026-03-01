@@ -10,7 +10,7 @@ const benefits = [
       </svg>
     ),
     title: "Aparece en Google",
-    description: "SEO optimizado para que tus pacientes te encuentren al buscar \"dentista\" en tu ciudad. Schema markup, velocidad y keywords.",
+    description: "Cuando alguien busca \"dentista en La Serena\", tu consulta aparece. Web rápida y optimizada para que Google te muestre primero.",
   },
   {
     icon: (
@@ -20,7 +20,7 @@ const benefits = [
       </svg>
     ),
     title: "WhatsApp 24/7",
-    description: "Botón de WhatsApp integrado en toda la web. Tus pacientes agendan hora a cualquier hora del día, incluso cuando duermes.",
+    description: "Botón de WhatsApp visible en toda la web. Tus pacientes te escriben a cualquier hora — tú despiertas con citas agendadas.",
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const benefits = [
       </svg>
     ),
     title: "Lista en 48 horas",
-    description: "Usamos IA y templates probados para entregar tu web en 2 días hábiles. Sin meses de espera ni procesos eternos.",
+    description: "Nada de meses de espera. En 2 días hábiles tienes tu web publicada, funcionando y recibiendo visitas.",
   },
   {
     icon: (
@@ -38,7 +38,7 @@ const benefits = [
       </svg>
     ),
     title: "Desde $150.000 CLP",
-    description: "Inversión accesible para cualquier consulta dental. Sin sorpresas, sin costos ocultos. Mensualidad todo incluido.",
+    description: "Menos de lo que cuesta un tratamiento. Sin letra chica, sin costos ocultos. Una inversión que se paga sola con nuevos pacientes.",
   },
 ];
 
@@ -53,9 +53,10 @@ export default function Benefits() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-16">
-          <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Beneficios</span>
+          <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">¿Por qué DentalWeb?</span>
           <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Todo lo que tu consulta necesita
+            Tu consulta online,{" "}
+            <span className="gradient-text">sin complicaciones</span>
           </h2>
         </div>
 

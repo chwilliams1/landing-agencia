@@ -26,7 +26,7 @@ export default function Hero() {
         <div className="fade-up">
           <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-8">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            Webs dentales con IA
+            La web de tu consulta, lista en 48 hrs
           </div>
         </div>
 
@@ -36,9 +36,9 @@ export default function Hero() {
         </h1>
 
         <p className="fade-up fade-up-delay-2 mt-4 sm:mt-8 text-base sm:text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-          Creamos tu web dental profesional con IA en{" "}
-          <span className="text-text-primary font-semibold">48 horas</span>.
-          Diseño premium, optimizada para Google y con WhatsApp integrado para que recibas pacientes mientras duermes.
+          Te diseñamos una web profesional en{" "}
+          <span className="text-text-primary font-semibold">48 horas</span>{" "}
+          para que tus pacientes te encuentren en Google, vean tus servicios y te escriban por WhatsApp — incluso mientras duermes.
         </p>
 
         <div className="fade-up fade-up-delay-3 mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

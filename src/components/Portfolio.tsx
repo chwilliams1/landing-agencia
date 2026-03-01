@@ -51,12 +51,13 @@ export default function Portfolio() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 sm:mb-16">
-            <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Portfolio</span>
+            <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Webs reales</span>
             <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-              Así se ven nuestras webs
+              Dentistas que ya están{" "}
+              <span className="gradient-text">captando pacientes online</span>
             </h2>
             <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg">
-              Cada web es única, diseñada para la especialidad y personalidad del dentista.
+              Cada sitio está diseñado para la especialidad y personalidad de cada doctor. Haz click para explorarlos.
             </p>
           </div>
 

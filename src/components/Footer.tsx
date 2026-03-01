@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold text-white">DentalWeb</h3>
             <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xs">
-              Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Rápido, bonito y efectivo.
+              Páginas web profesionales para dentistas en La Serena y todo Chile. Tu consulta visible, tus pacientes conectados.
             </p>
           </div>
 
@@ -56,7 +56,7 @@ export default function Footer() {
             &copy; {currentYear} DentalWeb. Todos los derechos reservados.
           </p>
           <p className="text-gray-500 text-xs">
-            Hecho con Next.js en La Serena
+            Hecho con cariño en La Serena
           </p>
         </div>
       </div>

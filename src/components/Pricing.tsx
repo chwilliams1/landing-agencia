@@ -5,16 +5,14 @@ import { useInView } from "@/hooks/useInView";
 const included = [
   "Web dental profesional responsive",
   "Dominio .cl personalizado (1er año)",
-  "Hosting rápido en Vercel",
+  "Hosting ultrarrápido (carga en menos de 1 segundo)",
   "WhatsApp integrado en toda la web",
-  "SEO + Schema markup LocalBusiness",
-  "Certificado SSL (https)",
+  "Sitio seguro con candado verde (HTTPS)",
   "Google Maps y horarios",
-  "Hasta 6 secciones personalizadas",
+  "Hasta 9 secciones personalizadas",
   "Diseño adaptado a tu especialidad",
   "Soporte técnico por WhatsApp",
-  "Actualizaciones menores incluidas",
-  "Panel para cambios de contenido",
+  "Correcciones de texto, fotos y colores (30 días)",
 ];
 
 export default function Pricing() {
@@ -32,11 +30,11 @@ export default function Pricing() {
         <div className="text-center mb-10 sm:mb-16">
           <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">Planes</span>
           <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Inversión transparente,{" "}
-            <span className="gradient-text">sin sorpresas</span>
+            Precio justo,{" "}
+            <span className="gradient-text">sin letra chica</span>
           </h2>
           <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg">
-            Un solo plan que incluye todo. Pagas el setup y una mensualidad que cubre hosting, dominio y soporte.
+            Un solo plan con todo incluido. Pagas el diseño una vez y una mensualidad que cubre hosting, dominio y soporte.
           </p>
         </div>
 
@@ -98,9 +96,9 @@ export default function Pricing() {
         {/* Comparison note */}
         <div className="fade-up fade-up-delay-3 mt-10 text-center">
           <p className="text-text-muted text-sm">
-            Una web con agencia tradicional cuesta <span className="line-through">$800.000 - $2.000.000</span> y demora semanas.
+            Una agencia tradicional cobra <span className="line-through">$800.000 - $2.000.000</span> y se demora semanas.
             <br />
-            <span className="text-text-secondary font-medium">Nosotros: desde $150.000 en 48 horas.</span>
+            <span className="text-text-secondary font-medium">Con DentalWeb: desde $150.000 y lista en 48 horas.</span>
           </p>
         </div>
       </div>
