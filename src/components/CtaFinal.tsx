@@ -7,7 +7,7 @@ export default function CtaFinal() {
   const whatsappUrl = "https://wa.me/56984494128?text=Hola%2C%20quiero%20mi%20web%20dental.%20%C2%BFCu%C3%A1ndo%20podemos%20conversar%3F";
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" ref={ref}>
+    <section id="cta-final" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" ref={ref}>
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.03] to-transparent" />
