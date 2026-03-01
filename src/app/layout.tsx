@@ -27,6 +27,12 @@ export const metadata: Metadata = {
       "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio incluido. Lista en 48 horas.",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/icon", type: "image/png", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+  },
 };
 
 function OrganizationSchema() {
