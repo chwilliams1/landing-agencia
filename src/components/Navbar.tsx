@@ -69,8 +69,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center h-16 sm:h-20">
         {/* Logo — fixed width to balance CTA on the right */}
-        <a href="#" className="font-extrabold text-lg sm:text-xl text-navy tracking-tight md:w-40">
-          Dental<span className="text-accent">Web</span>
+        <a href="#" className="md:w-40 shrink-0">
+          <img src="/logo.png" alt="DentalWeb" className="h-14 sm:h-16 w-auto" />
         </a>
 
         {/* Desktop links — centered */}
