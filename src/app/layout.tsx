@@ -31,8 +31,10 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   icons: {
     icon: [
-      { url: "/icon", type: "image/png", sizes: "32x32" },
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", type: "image/png", sizes: "180x180" },
     ],
   },
 };
