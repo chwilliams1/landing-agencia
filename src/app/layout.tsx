@@ -33,12 +33,12 @@ function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "WebDental",
+    name: "DentalWeb",
     description:
       "Agencia de diseño web especializada en páginas para dentistas en La Serena y Chile.",
-    url: "https://webdental.cl",
+    url: "https://dentalweb.cl",
     telephone: "+56984494128",
-    email: "hola@webdental.cl",
+    email: "hola@dentalweb.cl",
     address: {
       "@type": "PostalAddress",
       addressLocality: "La Serena",

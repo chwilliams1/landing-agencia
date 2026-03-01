@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <div>
-            <h3 className="text-lg font-bold text-white">WebDental</h3>
+            <h3 className="text-lg font-bold text-white">DentalWeb</h3>
             <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xs">
               Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Rápido, bonito y efectivo.
             </p>
@@ -27,8 +27,8 @@ export default function Footer() {
                 <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
-                <a href="mailto:hola@webdental.cl" className="hover:text-teal-300 transition-colors">
-                  hola@webdental.cl
+                <a href="mailto:hola@dentalweb.cl" className="hover:text-teal-300 transition-colors">
+                  hola@dentalweb.cl
                 </a>
               </li>
               <li className="flex items-center gap-2">
@@ -53,7 +53,7 @@ export default function Footer() {
 
         <div className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-xs">
-            &copy; {currentYear} WebDental. Todos los derechos reservados.
+            &copy; {currentYear} DentalWeb. Todos los derechos reservados.
           </p>
           <p className="text-gray-500 text-xs">
             Hecho con Next.js en La Serena
