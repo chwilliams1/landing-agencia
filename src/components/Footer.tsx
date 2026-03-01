@@ -46,7 +46,11 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#demo" className="hover:text-teal-300 transition-colors">Demo interactiva</a></li>
               <li><a href="#portfolio" className="hover:text-teal-300 transition-colors">Ejemplos reales</a></li>
+              <li><a href="#proceso" className="hover:text-teal-300 transition-colors">¿Cómo funciona?</a></li>
               <li><a href="#precio" className="hover:text-teal-300 transition-colors">Planes y precios</a></li>
+              <li><a href="#extras" className="hover:text-teal-300 transition-colors">Extras premium</a></li>
+              <li><a href="#testimonios" className="hover:text-teal-300 transition-colors">Testimonios</a></li>
+              <li><a href="#faq" className="hover:text-teal-300 transition-colors">Preguntas frecuentes</a></li>
             </ul>
           </div>
         </div>
