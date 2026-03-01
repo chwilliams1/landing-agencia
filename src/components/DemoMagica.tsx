@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useInView } from "@/hooks/useInView";
 
 /* ─────────────────────────── DATA ─────────────────────────── */
@@ -486,39 +486,106 @@ function PreviewCredentials({ scale, colors, specialty }: Pick<PreviewProps, "sc
   );
 }
 
-function PreviewGallery({ scale, colors, specialty }: Pick<PreviewProps, "scale" | "colors" | "specialty">) {
+function PreviewBeforeAfterCases({ scale, colors, specialty }: Pick<PreviewProps, "scale" | "colors" | "specialty">) {
   const s = sizes[scale];
+  const [pos, setPos] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
   const gallery = galleryBySpecialty[specialty] || galleryBySpecialty["Odontología General"];
-  const gradients = [
-    `linear-gradient(135deg, ${colors.bg} 0%, ${colors.light}30 100%)`,
-    `linear-gradient(135deg, ${colors.light}20 0%, ${colors.bg} 100%)`,
-    `linear-gradient(135deg, ${colors.primary}08 0%, ${colors.light}25 100%)`,
-  ];
+
+  const updatePos = useCallback((clientX: number) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    setPos(Math.max(8, Math.min(92, ((clientX - rect.left) / rect.width) * 100)));
+  }, []);
+
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    dragging.current = true;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    updatePos(e.clientX);
+  }, [updatePos]);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (dragging.current) updatePos(e.clientX);
+  }, [updatePos]);
+
+  const onPointerUp = useCallback(() => { dragging.current = false; }, []);
+
   return (
     <div className={`preview-reveal ${s.sectionPx} ${s.sectionPy}`} style={{ background: "#f8fafc", animationDelay: "0.3s" }}>
       <p className={`${s.sectionTitle} font-bold uppercase tracking-widest mb-3`} style={{ color: colors.primary }}>
-        Casos Clínicos
+        Casos Clínicos — Antes y Después
       </p>
-      <div className="grid grid-cols-3 gap-2">
-        {gallery.map((item, i) => (
-          <div key={i} className="rounded-lg overflow-hidden border border-gray-100">
-            <div className={`${scale === "mini" ? "h-14" : "h-28"} relative`} style={{ background: gradients[i] }}>
-              <div className={`absolute top-1 left-1 ${s.galleryLabel} font-medium px-1.5 py-0.5 rounded-full bg-white/80 backdrop-blur-sm`} style={{ color: colors.primary }}>
-                Antes / Después
+
+      {/* Interactive Before/After Slider */}
+      <div
+        ref={containerRef}
+        className={`relative ${scale === "mini" ? "h-28" : "h-44 sm:h-52"} rounded-xl overflow-hidden cursor-col-resize select-none border`}
+        style={{ borderColor: `${colors.primary}20` }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+      >
+        {/* AFTER side (full background) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-cyan-50">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className={`${scale === "mini" ? "w-10 h-10" : "w-14 h-14"} mx-auto rounded-full flex items-center justify-center mb-1`} style={{ background: `${colors.primary}12`, color: colors.primary }}>
+                <SparkleToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"}`} />
               </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-8 h-8"} opacity-20`} />
+              <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold`} style={{ color: colors.primary }}>Sonrisa Perfecta</p>
+            </div>
+          </div>
+          <span className={`absolute bottom-2 right-2 ${scale === "mini" ? "text-[6px]" : "text-[9px]"} font-bold text-white px-1.5 py-0.5 rounded-full`} style={{ background: colors.primary }}>DESPUÉS</span>
+        </div>
+
+        {/* BEFORE side (clipped) */}
+        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50/30 to-yellow-50/50">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className={`${scale === "mini" ? "w-10 h-10" : "w-14 h-14"} mx-auto rounded-full bg-amber-100/60 flex items-center justify-center mb-1`}>
+                  <ToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"} text-amber-400/70`} />
+                </div>
+                <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold text-amber-700`}>Caso Inicial</p>
               </div>
             </div>
-            <div className={`${scale === "mini" ? "p-1.5" : "p-2.5"} bg-white`}>
+            <span className={`absolute bottom-2 left-2 ${scale === "mini" ? "text-[6px]" : "text-[9px]"} font-bold text-amber-800 bg-amber-200/80 px-1.5 py-0.5 rounded-full`}>ANTES</span>
+          </div>
+        </div>
+
+        {/* Slider divider + handle */}
+        <div className="absolute top-0 bottom-0" style={{ left: `${pos}%`, transform: "translateX(-50%)" }}>
+          <div className="w-0.5 h-full bg-white shadow-sm" />
+          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${scale === "mini" ? "w-5 h-5" : "w-7 h-7"} rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center`}>
+            <svg className={`${scale === "mini" ? "w-2.5 h-2.5" : "w-3.5 h-3.5"} text-gray-400`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Case cards below slider */}
+      <div className="grid grid-cols-2 gap-1.5 mt-2">
+        {gallery.slice(0, 2).map((item, i) => (
+          <div key={i} className="rounded-lg overflow-hidden border border-gray-100">
+            <div className={`${scale === "mini" ? "h-10" : "h-16"} relative`} style={{ background: `linear-gradient(135deg, ${colors.bg}, ${colors.light}30)` }}>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <ToothIcon className={`${scale === "mini" ? "w-4 h-4" : "w-6 h-6"} opacity-15`} />
+              </div>
+            </div>
+            <div className={`${scale === "mini" ? "p-1.5" : "p-2"} bg-white`}>
               <p className={`${s.galleryTitle} font-semibold leading-tight`} style={{ color: "#0f172a" }}>{item.title}</p>
-              <span className={`${s.galleryTag} font-medium px-1.5 py-0.5 rounded-full inline-block mt-1`} style={{ background: `${colors.primary}10`, color: colors.primary }}>
-                {item.tag}
-              </span>
+              <span className={`${s.galleryTag} font-medium px-1.5 py-0.5 rounded-full inline-block mt-0.5`} style={{ background: `${colors.primary}10`, color: colors.primary }}>{item.tag}</span>
             </div>
           </div>
         ))}
       </div>
+
+      <p className={`${scale === "mini" ? "text-[7px]" : "text-[10px]"} text-center text-gray-400 mt-1.5 italic`}>
+        Arrastra el slider para comparar
+      </p>
     </div>
   );
 }
@@ -575,6 +642,58 @@ function PreviewTestimonials({ scale, colors }: Pick<PreviewProps, "scale" | "co
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function PreviewConvenios({ scale, colors }: Pick<PreviewProps, "scale" | "colors">) {
+  const s = sizes[scale];
+  const convenios = ["Fonasa", "Colmena", "Cruz Blanca", "Banmédica", "Consalud", "Vida Tres"];
+  return (
+    <div className={`preview-reveal ${s.sectionPx} ${s.sectionPy} bg-white`} style={{ animationDelay: "0.37s" }}>
+      <p className={`${s.sectionTitle} font-bold uppercase tracking-widest mb-3`} style={{ color: colors.primary }}>
+        Convenios
+      </p>
+      <div className="grid grid-cols-3 gap-1.5">
+        {convenios.map((name) => (
+          <div key={name} className="flex items-center gap-1.5 p-1.5 rounded-lg border border-gray-100 bg-gray-50/50">
+            <div className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"} rounded-md flex items-center justify-center shrink-0`} style={{ background: `${colors.primary}08`, color: colors.primary }}>
+              <ShieldToothIcon className={`${scale === "mini" ? "w-3 h-3" : "w-4 h-4"}`} />
+            </div>
+            <span className={`${scale === "mini" ? "text-[7px]" : "text-[11px]"} font-medium leading-tight`} style={{ color: "#334155" }}>{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function PreviewBooking({ scale, colors }: Pick<PreviewProps, "scale" | "colors">) {
+  const s = sizes[scale];
+  const slots = [
+    { day: "Lun", time: "10:00" },
+    { day: "Mar", time: "15:30" },
+    { day: "Mié", time: "09:00" },
+  ];
+  return (
+    <div className={`preview-reveal ${s.sectionPx} ${s.sectionPy}`} style={{ background: "#f8fafc", animationDelay: "0.39s" }}>
+      <p className={`${s.sectionTitle} font-bold uppercase tracking-widest mb-3`} style={{ color: colors.primary }}>
+        Reserva tu Hora Online
+      </p>
+      <div className="grid grid-cols-3 gap-1.5">
+        {slots.map((slot) => (
+          <div key={slot.day + slot.time} className="rounded-lg border border-gray-100 bg-white p-2 text-center">
+            <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold`} style={{ color: colors.primary }}>{slot.day}</p>
+            <p className={`${scale === "mini" ? "text-[10px]" : "text-sm"} font-extrabold mt-0.5`} style={{ color: "#0f172a" }}>{slot.time}</p>
+            <div className={`mt-1.5 ${scale === "mini" ? "text-[7px] py-0.5" : "text-[10px] py-1"} font-semibold text-white rounded-full`} style={{ background: colors.primary }}>
+              Agendar
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className={`${scale === "mini" ? "text-[7px]" : "text-[10px]"} text-center mt-2`} style={{ color: "#94a3b8" }}>
+        Selecciona un horario y confirma por WhatsApp
+      </p>
     </div>
   );
 }
@@ -708,6 +827,140 @@ function PreviewFooter({ scale, colors, doctorTitle, displayName, specialty, pho
   );
 }
 
+/* ─────────────── BEFORE STATE (Google Search) ────────────────── */
+
+function BeforeState({ specialty, doctorTitle, displayName, initials, colors }: {
+  specialty: string; doctorTitle: string; displayName: string; initials: string;
+  colors: { primary: string; light: string; bg: string };
+}) {
+  const starIcon = (filled: boolean) => (
+    <svg className={`w-2 h-2 ${filled ? "text-yellow-400" : "text-gray-200"}`} fill="currentColor" viewBox="0 0 20 20">
+      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+    </svg>
+  );
+
+  return (
+    <div className="animate-fadeIn bg-white p-4 sm:p-5 space-y-3">
+      {/* Google search bar */}
+      <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-gray-200 shadow-sm">
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+        </svg>
+        <span className="text-[10px] sm:text-xs text-gray-600 truncate flex-1">{specialty.toLowerCase()} la serena</span>
+        <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>
+      </div>
+
+      <p className="text-[9px] text-gray-400">Aproximadamente 24.500 resultados (0,42 s)</p>
+
+      {/* Competitor 1 — with website */}
+      <div className="p-2.5 rounded-lg border border-gray-100">
+        <div className="flex items-center gap-1 text-[9px] text-gray-500 mb-0.5">
+          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center">
+            <span className="text-[7px] font-bold text-blue-600">C</span>
+          </div>
+          www.clinica-dental-serena.cl
+        </div>
+        <p className="text-[11px] sm:text-xs text-[#1a0dab] font-medium leading-snug">
+          Clínica Dental Premium — {specialty} | La Serena
+        </p>
+        <p className="text-[9px] text-gray-600 mt-0.5 leading-relaxed">
+          Más de 15 años de experiencia. Agenda online, equipos de última generación. Primera consulta sin costo.
+        </p>
+        <div className="flex items-center gap-0.5 mt-1">
+          {[1,2,3,4,5].map(i => <span key={i}>{starIcon(true)}</span>)}
+          <span className="text-[8px] text-gray-500 ml-1">4.8 (127 reseñas)</span>
+        </div>
+      </div>
+
+      {/* Competitor 2 */}
+      <div className="p-2.5 rounded-lg border border-gray-100">
+        <div className="flex items-center gap-1 text-[9px] text-gray-500 mb-0.5">
+          <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center">
+            <span className="text-[7px] font-bold text-green-600">S</span>
+          </div>
+          www.sonrisas-serena.cl
+        </div>
+        <p className="text-[11px] sm:text-xs text-[#1a0dab] font-medium leading-snug">
+          Sonrisas La Serena — Tu Dentista de Confianza
+        </p>
+        <p className="text-[9px] text-gray-600 mt-0.5">
+          Atención integral para toda la familia. Tecnología de punta, ambiente acogedor...
+        </p>
+      </div>
+
+      {/* Maps / Places section */}
+      <div className="rounded-lg border border-gray-200 overflow-hidden">
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-50 border-b border-gray-100">
+          <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+          <span className="text-[10px] font-medium text-gray-700">Lugares</span>
+        </div>
+        <div className="p-2 space-y-1.5">
+          {/* The dentist — no web */}
+          <div className="flex items-center gap-2 p-2 rounded-lg bg-red-50/60 border border-red-100/60">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ background: `linear-gradient(135deg, ${colors.primary}, ${colors.light})` }}>
+              <span className="text-[8px] font-bold text-white">{initials}</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold truncate">{doctorTitle} {displayName}</p>
+              <p className="text-[8px] text-gray-400">La Serena · Sin sitio web</p>
+              <p className="text-[8px] text-gray-400">Sin reseñas</p>
+            </div>
+            <div className="flex flex-col gap-1 items-end shrink-0">
+              <span className="text-[7px] font-semibold text-red-600 bg-red-100 px-1.5 py-0.5 rounded-full">Sin web</span>
+              <span className="text-[7px] text-gray-400">0 fotos</span>
+            </div>
+          </div>
+
+          {/* Competitor with web */}
+          <div className="flex items-center gap-2 p-2 rounded-lg">
+            <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+              <span className="text-[8px] font-bold text-blue-600">CD</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold truncate">Clínica Dental Premium</p>
+              <p className="text-[8px] text-green-600">clinica-dental-serena.cl</p>
+              <div className="flex items-center gap-0.5 mt-0.5">
+                {[1,2,3,4,5].map(i => <span key={i}>{starIcon(true)}</span>)}
+                <span className="text-[8px] text-gray-500 ml-0.5">4.8 (127)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Another competitor */}
+          <div className="flex items-center gap-2 p-2 rounded-lg">
+            <div className="w-7 h-7 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+              <span className="text-[8px] font-bold text-green-600">SS</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-semibold truncate">Sonrisas La Serena</p>
+              <p className="text-[8px] text-green-600">sonrisas-serena.cl</p>
+              <div className="flex items-center gap-0.5 mt-0.5">
+                {[1,2,3,4].map(i => <span key={i}>{starIcon(true)}</span>)}
+                {starIcon(false)}
+                <span className="text-[8px] text-gray-500 ml-0.5">4.5 (89)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom callout */}
+      <div className="p-3 rounded-xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-100/80 text-center">
+        <p className="text-[11px] sm:text-xs font-bold text-red-800">Tus pacientes te buscan aquí</p>
+        <p className="text-[9px] sm:text-[10px] text-red-600/80 mt-0.5">...y eligen a tu competencia porque tiene web profesional</p>
+      </div>
+    </div>
+  );
+}
+
 /* ───────────────────── MAIN COMPONENT ──────────────────────── */
 
 export default function DemoMagica() {
@@ -717,6 +970,7 @@ export default function DemoMagica() {
   const [phone, setPhone] = useState("");
   const [showPreview, setShowPreview] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [viewMode, setViewMode] = useState<"before" | "after">("after");
 
   const closeModal = useCallback(() => setShowModal(false), []);
 
@@ -754,8 +1008,9 @@ export default function DemoMagica() {
         <PreviewServices scale={scale} colors={colors} specialty={specialty} />
         <PreviewAboutQuote {...props} />
         <PreviewCredentials scale={scale} colors={colors} specialty={specialty} />
-        <PreviewGallery scale={scale} colors={colors} specialty={specialty} />
+        <PreviewBeforeAfterCases scale={scale} colors={colors} specialty={specialty} />
         <PreviewTestimonials scale={scale} colors={colors} />
+        <PreviewConvenios scale={scale} colors={colors} />
         <PreviewLocation scale={scale} colors={colors} phone={phone} />
         <PreviewCta scale={scale} colors={colors} />
         <PreviewFooter {...props} />
@@ -866,11 +1121,47 @@ export default function DemoMagica() {
                 </div>
               </div>
 
+              {/* Toggle bar — only when preview is generated */}
+              {showPreview && (
+                <div className="flex border-b border-border bg-[#F1F5F9]">
+                  <button
+                    onClick={() => setViewMode("before")}
+                    className={`flex-1 px-3 py-2 text-[10px] sm:text-xs font-semibold transition-all ${
+                      viewMode === "before"
+                        ? "text-red-600 border-b-2 border-red-500 bg-white"
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
+                  >
+                    <span className="flex items-center justify-center gap-1">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                      Sin Web
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => setViewMode("after")}
+                    className={`flex-1 px-3 py-2 text-[10px] sm:text-xs font-semibold transition-all ${
+                      viewMode === "after"
+                        ? "text-green-600 border-b-2 border-green-500 bg-white"
+                        : "text-gray-400 hover:text-gray-600"
+                    }`}
+                  >
+                    <span className="flex items-center justify-center gap-1">
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Con DentalWeb
+                    </span>
+                  </button>
+                </div>
+              )}
+
               {/* Mini website preview — scrollable + clickable */}
               <div
-                className={`relative overflow-y-auto max-h-[400px] sm:max-h-[600px] ${showPreview ? "cursor-pointer group" : ""}`}
+                className={`relative overflow-y-auto max-h-[400px] sm:max-h-[600px] ${showPreview && viewMode === "after" ? "cursor-pointer group" : ""}`}
                 style={{ background: showPreview ? "#fff" : "#F8FAFB" }}
-                onClick={() => { if (showPreview) setShowModal(true); }}
+                onClick={() => { if (showPreview && viewMode === "after") setShowModal(true); }}
               >
                 {!showPreview ? (
                   <div className="flex items-center justify-center py-24 sm:py-32">
@@ -884,6 +1175,14 @@ export default function DemoMagica() {
                       <p className="text-text-muted text-sm mt-1">Completa el formulario para ver la magia</p>
                     </div>
                   </div>
+                ) : viewMode === "before" ? (
+                  <BeforeState
+                    specialty={specialty}
+                    doctorTitle={doctorTitle}
+                    displayName={displayName}
+                    initials={initials}
+                    colors={colors}
+                  />
                 ) : (
                   <>
                     {renderPreview("mini")}

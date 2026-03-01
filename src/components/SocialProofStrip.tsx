@@ -19,11 +19,11 @@ function useCountUp(target: number, active: boolean, decimals = 0) {
     const duration = 1800;
     let start: number | null = null;
     let raf: number;
+    let delay: ReturnType<typeof setTimeout>;
 
     const step = (ts: number) => {
       if (!start) start = ts;
       const progress = Math.min((ts - start) / duration, 1);
-      // ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(parseFloat((eased * target).toFixed(decimals)));
 
@@ -32,8 +32,15 @@ function useCountUp(target: number, active: boolean, decimals = 0) {
       }
     };
 
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    // Wait for fade-up animation to reveal elements before counting
+    delay = setTimeout(() => {
+      raf = requestAnimationFrame(step);
+    }, 500);
+
+    return () => {
+      clearTimeout(delay);
+      cancelAnimationFrame(raf);
+    };
   }, [active, target, decimals]);
 
   return count;

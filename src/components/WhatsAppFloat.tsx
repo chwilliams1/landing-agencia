@@ -3,7 +3,15 @@
 import { useEffect, useState } from "react";
 
 export default function WhatsAppFloat() {
-  const [visible, setVisible] = useState(true);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [ctaVisible, setCtaVisible] = useState(false);
+
+  // Show only after scrolling past the hero
+  useEffect(() => {
+    const onScroll = () => setScrolledPastHero(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Hide when CtaFinal is in view
   useEffect(() => {
@@ -11,12 +19,14 @@ export default function WhatsAppFloat() {
     if (!target) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
+      ([entry]) => setCtaVisible(entry.isIntersecting),
       { threshold: 0.3 }
     );
     observer.observe(target);
     return () => observer.disconnect();
   }, []);
+
+  const visible = scrolledPastHero && !ctaVisible;
 
   return (
     <a

@@ -22,7 +22,7 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-32 lg:py-40 text-center">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 pt-28 sm:pt-36 lg:pt-44 pb-20 sm:pb-32 lg:pb-40 text-center">
         <div className="fade-up">
           <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-8">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
