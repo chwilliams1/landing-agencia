@@ -19,7 +19,7 @@ const included = [
 
 export default function Pricing() {
   const ref = useInView();
-  const whatsappUrl = "https://wa.me/56912345678?text=Hola%2C%20quiero%20mi%20web%20dental.%20Me%20interesa%20conocer%20los%20planes.";
+  const whatsappUrl = "https://wa.me/56984494128?text=Hola%2C%20quiero%20mi%20web%20dental.%20Me%20interesa%20conocer%20los%20planes.";
 
   return (
     <section id="precio" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" ref={ref}>

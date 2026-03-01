@@ -37,7 +37,7 @@ function OrganizationSchema() {
     description:
       "Agencia de diseño web especializada en páginas para dentistas en La Serena y Chile.",
     url: "https://webdental.cl",
-    telephone: "+56912345678",
+    telephone: "+56984494128",
     email: "hola@webdental.cl",
     address: {
       "@type": "PostalAddress",

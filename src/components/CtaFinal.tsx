@@ -4,7 +4,7 @@ import { useInView } from "@/hooks/useInView";
 
 export default function CtaFinal() {
   const ref = useInView();
-  const whatsappUrl = "https://wa.me/56912345678?text=Hola%2C%20quiero%20mi%20web%20dental.%20%C2%BFCu%C3%A1ndo%20podemos%20conversar%3F";
+  const whatsappUrl = "https://wa.me/56984494128?text=Hola%2C%20quiero%20mi%20web%20dental.%20%C2%BFCu%C3%A1ndo%20podemos%20conversar%3F";
 
   return (
     <section className="py-16 sm:py-24 lg:py-32 relative overflow-hidden" ref={ref}>
