@@ -527,32 +527,30 @@ function PreviewBeforeAfterCases({ scale, colors, specialty }: Pick<PreviewProps
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
       >
-        {/* AFTER side (full background) */}
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-cyan-50">
+        {/* BEFORE side (full background) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50/30 to-yellow-50/50">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className={`${scale === "mini" ? "w-10 h-10" : "w-14 h-14"} mx-auto rounded-full bg-amber-100/60 flex items-center justify-center mb-1`}>
+                <ToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"} text-amber-400/70`} />
+              </div>
+              <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold text-amber-700`}>Caso Inicial</p>
+            </div>
+          </div>
+          <span className={`absolute top-2 left-2 ${scale === "mini" ? "text-[6px]" : "text-[9px]"} font-bold text-amber-800 bg-amber-200/80 px-1.5 py-0.5 rounded-full`}>ANTES</span>
+        </div>
+
+        {/* AFTER side (on top, revealed from right) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-white to-cyan-50" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
               <div className={`${scale === "mini" ? "w-10 h-10" : "w-14 h-14"} mx-auto rounded-full flex items-center justify-center mb-1`} style={{ background: `${colors.primary}12`, color: colors.primary }}>
-                <SparkleToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"}`} />
+                <ToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"}`} />
               </div>
-              <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold`} style={{ color: colors.primary }}>Sonrisa Perfecta</p>
+              <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold`} style={{ color: colors.primary }}>Resultado</p>
             </div>
           </div>
-          <span className={`absolute bottom-2 right-2 ${scale === "mini" ? "text-[6px]" : "text-[9px]"} font-bold text-white px-1.5 py-0.5 rounded-full`} style={{ background: colors.primary }}>DESPUÉS</span>
-        </div>
-
-        {/* BEFORE side (clipped) */}
-        <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50/30 to-yellow-50/50">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className={`${scale === "mini" ? "w-10 h-10" : "w-14 h-14"} mx-auto rounded-full bg-amber-100/60 flex items-center justify-center mb-1`}>
-                  <ToothIcon className={`${scale === "mini" ? "w-5 h-5" : "w-7 h-7"} text-amber-400/70`} />
-                </div>
-                <p className={`${scale === "mini" ? "text-[8px]" : "text-xs"} font-bold text-amber-700`}>Caso Inicial</p>
-              </div>
-            </div>
-            <span className={`absolute bottom-2 left-2 ${scale === "mini" ? "text-[6px]" : "text-[9px]"} font-bold text-amber-800 bg-amber-200/80 px-1.5 py-0.5 rounded-full`}>ANTES</span>
-          </div>
+          <span className={`absolute top-2 right-2 ${scale === "mini" ? "text-[6px]" : "text-[9px]"} font-bold text-white px-1.5 py-0.5 rounded-full`} style={{ background: colors.primary }}>DESPUÉS</span>
         </div>
 
         {/* Slider divider + handle */}
