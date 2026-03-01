@@ -94,7 +94,7 @@ export default function RootLayout({
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', 'TU_PIXEL_ID');
+            fbq('init', '531419260644774');
             fbq('track', 'PageView');
           `}
         </Script>
@@ -103,22 +103,22 @@ export default function RootLayout({
             height="1"
             width="1"
             style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=TU_PIXEL_ID&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=531419260644774&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
 
-        {/* Google Ads / gtag.js */}
+        {/* Google Analytics */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-TU_GTAG_ID"
+          src="https://www.googletagmanager.com/gtag/js?id=G-N61NMW62Y1"
           strategy="afterInteractive"
         />
-        <Script id="google-ads" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-TU_GTAG_ID');
+            gtag('config', 'G-N61NMW62Y1');
           `}
         </Script>
       </body>
