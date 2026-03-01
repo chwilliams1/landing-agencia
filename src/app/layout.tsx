@@ -12,13 +12,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Páginas Web para Dentistas en La Serena | Tu Web Dental en 48 Horas",
   description:
-    "Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Diseño premium con IA, SEO optimizado, WhatsApp integrado. Lista en 48 horas desde $150.000 CLP.",
+    "Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Diseño premium con IA, SEO optimizado, WhatsApp integrado. Lista en 48 horas desde $19.990/mes.",
   keywords:
     "web dentista la serena, página web dentista, web clínica dental, diseño web odontología, web para dentistas chile",
   openGraph: {
     title: "Páginas Web para Dentistas | Tu Web Dental en 48 Horas",
     description:
-      "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio incluido. Lista en 48 horas desde $150.000.",
+      "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
     type: "website",
     locale: "es_CL",
   },
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Páginas Web para Dentistas | Tu Web Dental en 48 Horas",
     description:
-      "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio incluido. Lista en 48 horas.",
+      "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
   },
   robots: { index: true, follow: true },
   icons: {
@@ -58,7 +58,7 @@ function OrganizationSchema() {
       name: "Chile",
     },
     serviceType: "Web Design",
-    priceRange: "$150.000 - $250.000 CLP",
+    priceRange: "$19.990 - $49.990 CLP/mes",
   };
 
   return (
