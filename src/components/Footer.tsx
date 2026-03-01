@@ -46,10 +46,10 @@ export default function Footer() {
             <ul className="space-y-1 text-sm text-gray-400">
               <li><a href="#demo" className="hover:text-teal-300 transition-colors inline-block py-1.5">Demo interactiva</a></li>
               <li><a href="#portfolio" className="hover:text-teal-300 transition-colors inline-block py-1.5">Portfolio</a></li>
-              <li><a href="#proceso" className="hover:text-teal-300 transition-colors inline-block py-1.5">¿Cómo funciona?</a></li>
-              <li><a href="#precio" className="hover:text-teal-300 transition-colors inline-block py-1.5">Planes y precios</a></li>
+              <li><a href="#proceso" className="hover:text-teal-300 transition-colors inline-block py-1.5">Proceso</a></li>
               <li><a href="#funcionalidades" className="hover:text-teal-300 transition-colors inline-block py-1.5">Funcionalidades</a></li>
               <li><a href="#nosotros" className="hover:text-teal-300 transition-colors inline-block py-1.5">Nosotros</a></li>
+              <li><a href="#precio" className="hover:text-teal-300 transition-colors inline-block py-1.5">Planes y precios</a></li>
               <li><a href="#faq" className="hover:text-teal-300 transition-colors inline-block py-1.5">Preguntas frecuentes</a></li>
             </ul>
           </div>

@@ -22,14 +22,13 @@ export default function Home() {
       <main>
         <Hero />
         <SocialProofStrip />
+        <Benefits />
         <DemoMagica />
         <Portfolio />
-        <Benefits />
         <HowItWorks />
-        <Pricing />
         <AddOns />
-
         <AboutUs />
+        <Pricing />
         <FAQ />
         <CtaFinal />
       </main>
