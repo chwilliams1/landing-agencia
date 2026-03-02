@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const NAV_LINKS = [
   { label: "Demo", href: "#demo" },
@@ -10,9 +11,10 @@ const NAV_LINKS = [
   { label: "Nosotros", href: "#nosotros" },
   { label: "Precios", href: "#precio" },
   { label: "FAQ", href: "#faq" },
+  { label: "Blog", href: "/blog" },
 ];
 
-const SECTION_IDS = NAV_LINKS.map((l) => l.href.slice(1));
+const SECTION_IDS = NAV_LINKS.filter((l) => l.href.startsWith("#")).map((l) => l.href.slice(1));
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -75,19 +77,25 @@ export default function Navbar() {
 
         {/* Desktop links — centered */}
         <div className="hidden md:flex items-center justify-center gap-1 flex-1">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeSection === link.href.slice(1)
-                  ? "text-accent bg-accent/10"
-                  : "text-text-secondary hover:text-text-primary hover:bg-bg-alt"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isRoute = !link.href.startsWith("#");
+            const isActive = !isRoute && activeSection === link.href.slice(1);
+            const className = `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+              isActive
+                ? "text-accent bg-accent/10"
+                : "text-text-secondary hover:text-text-primary hover:bg-bg-alt"
+            }`;
+
+            return isRoute ? (
+              <Link key={link.href} href={link.href} className={className}>
+                {link.label}
+              </Link>
+            ) : (
+              <a key={link.href} href={link.href} className={className}>
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         {/* Hamburger (mobile) — right side balances logo */}
@@ -118,20 +126,25 @@ export default function Navbar() {
         } ${scrolled ? "bg-white/95 backdrop-blur-md" : "bg-white"}`}
       >
         <div className="px-4 py-4 space-y-1">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={handleLinkClick}
-              className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                activeSection === link.href.slice(1)
-                  ? "text-accent bg-accent/10"
-                  : "text-text-secondary hover:text-text-primary hover:bg-bg-alt"
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isRoute = !link.href.startsWith("#");
+            const isActive = !isRoute && activeSection === link.href.slice(1);
+            const className = `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              isActive
+                ? "text-accent bg-accent/10"
+                : "text-text-secondary hover:text-text-primary hover:bg-bg-alt"
+            }`;
+
+            return isRoute ? (
+              <Link key={link.href} href={link.href} onClick={handleLinkClick} className={className}>
+                {link.label}
+              </Link>
+            ) : (
+              <a key={link.href} href={link.href} onClick={handleLinkClick} className={className}>
+                {link.label}
+              </a>
+            );
+          })}
         </div>
       </div>
     </nav>
