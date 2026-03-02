@@ -294,15 +294,55 @@ export default function Pricing() {
           })}
         </div>
 
-        {/* Trust footer */}
-        <div className="fade-up fade-up-delay-4 mt-12 sm:mt-14 text-center">
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
-            <span className="text-text-muted text-xs sm:text-sm font-medium">🔒 Pago seguro</span>
-            <span className="text-text-muted text-xs sm:text-sm font-medium">❌ Sin contratos de permanencia</span>
-            <span className="text-text-muted text-xs sm:text-sm font-medium">🔄 Cancela cuando quieras</span>
-            <span className="text-text-muted text-xs sm:text-sm font-medium">🚀 Web lista en 48 horas</span>
+        {/* Trust badges */}
+        <div className="fade-up fade-up-delay-4 mt-12 sm:mt-14">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-3xl mx-auto">
+            {/* Pago seguro */}
+            <div className="flex flex-col items-center text-center bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+              <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+              </div>
+              <span className="text-sm font-bold text-text-primary">Pago seguro</span>
+              <span className="text-[11px] text-text-muted mt-0.5">SSL y cifrado</span>
+            </div>
+
+            {/* Sin contratos */}
+            <div className="flex flex-col items-center text-center bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+              <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <span className="text-sm font-bold text-text-primary">Sin contratos</span>
+              <span className="text-[11px] text-text-muted mt-0.5">Cancela cuando quieras</span>
+            </div>
+
+            {/* Web en 48h */}
+            <div className="flex flex-col items-center text-center bg-bg-card border border-border rounded-xl p-4 sm:p-5">
+              <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                </svg>
+              </div>
+              <span className="text-sm font-bold text-text-primary">Web en 48 horas</span>
+              <span className="text-[11px] text-text-muted mt-0.5">Entrega ultra rápida</span>
+            </div>
+
+            {/* 30 días cambios — highlighted */}
+            <div className="flex flex-col items-center text-center bg-bg-card border-2 border-accent/30 rounded-xl p-4 sm:p-5 shadow-sm shadow-accent/5">
+              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mb-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M2.985 19.644l3.181-3.183" />
+                </svg>
+              </div>
+              <span className="text-sm font-bold text-text-primary">30 días de cambios</span>
+              <span className="text-[11px] text-text-muted mt-0.5">Ilimitados, sin costo extra</span>
+            </div>
           </div>
-          <p className="text-text-muted text-xs max-w-md mx-auto">
+
+          <p className="text-text-muted text-xs max-w-md mx-auto text-center mt-5">
             Todos los planes incluyen hosting, dominio .cl, SSL, mantenimiento automático y soporte. Sin contratos, cancela cuando quieras.
           </p>
         </div>
