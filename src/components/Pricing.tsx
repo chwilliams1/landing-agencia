@@ -199,8 +199,7 @@ export default function Pricing() {
         <div className="grid lg:grid-cols-3 gap-5 lg:gap-6 max-w-[420px] lg:max-w-none mx-auto">
           {plans.map((plan, i) => {
             const price = isAnnual ? plan.annual : plan.monthly;
-            const whatsappMsg = encodeURIComponent(`Hola, me interesa el plan ${plan.name} de DentalWeb`);
-            const whatsappUrl = `https://wa.me/56984494128?text=${whatsappMsg}`;
+            const intakeUrl = `/intake?plan=${plan.name.toLowerCase()}`;
 
             return (
               <div
@@ -245,9 +244,7 @@ export default function Pricing() {
 
                   {/* CTA */}
                   <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={intakeUrl}
                     className={`block w-full text-center font-bold py-3 rounded-full transition-all text-sm sm:text-base ${
                       plan.ctaStyle === "filled"
                         ? "bg-accent hover:bg-accent-light text-white shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5"

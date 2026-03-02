@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 
 /* ═══════════════════════════ DATA ═══════════════════════════ */
 
@@ -203,6 +204,14 @@ export default function IntakeWizard() {
   const [redes, setRedes] = useState("");
   const [dominio, setDominio] = useState("");
   const [plan, setPlan] = useState<PlanId>("crecimiento");
+
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const urlPlan = searchParams.get("plan");
+    if (urlPlan && ["presencia", "crecimiento", "autopilot"].includes(urlPlan)) {
+      setPlan(urlPlan as PlanId);
+    }
+  }, [searchParams]);
 
   // Step 2 — Servicios
   const [servicios, setServicios] = useState<string[]>([]);
@@ -431,11 +440,16 @@ export default function IntakeWizard() {
       {/* ── Hero ── */}
       <div className="relative bg-gradient-to-br from-accent to-[#0a5e6e] text-white text-center px-5 pt-8 sm:pt-11 pb-10 sm:pb-12">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.08),transparent_60%)]" />
+        {/* Incentive banner */}
+        <div className="relative inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+          <span>🎁</span>
+          Preview personalizada gratis en 24 horas
+        </div>
         <h1 className="relative text-xl sm:text-3xl font-extrabold tracking-tight">
           Cuéntanos sobre tu consulta
         </h1>
         <p className="relative mt-1.5 sm:mt-2 text-white/80 text-xs sm:text-base max-w-md mx-auto">
-          Completa este formulario y te contactaremos por WhatsApp para comenzar con tu web dental.
+          Completa este formulario y en 24 horas recibirás una preview personalizada de cómo se vería tu web dental. Totalmente gratis.
         </p>
       </div>
 
@@ -471,12 +485,15 @@ export default function IntakeWizard() {
 
       {/* ── Progress bar ── */}
       <div className="max-w-[680px] mx-auto px-4">
-        <div className="h-1 bg-border rounded-full overflow-hidden mb-4">
+        <div className="h-1 bg-border rounded-full overflow-hidden">
           <div
             className="h-full bg-accent rounded-full transition-all duration-500"
             style={{ width: `${(step / 5) * 100}%` }}
           />
         </div>
+        <p className="text-xs text-text-muted text-center mt-2 mb-4">
+          Paso {step} de 5 — {["Empecemos", "Casi a la mitad", "¡Vas genial!", "Último paso de datos", "¡A enviar!"][step - 1]}
+        </p>
       </div>
 
       {/* ── Cards ── */}
@@ -485,8 +502,8 @@ export default function IntakeWizard() {
         {/* ════ PASO 1: Consulta ════ */}
         {step === 1 && (
           <div className="bg-bg-card border border-border rounded-2xl p-4 sm:p-7 animate-fadeIn">
-            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Tu consulta</h2>
-            <p className="text-text-muted text-sm mb-5">Información básica de contacto</p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Cuéntanos de tu consulta</h2>
+            <p className="text-text-muted text-sm mb-5">Con estos datos armamos la base de tu web. Solo toma 2 minutos.</p>
 
             <Field label="Nombre del consultorio *">
               <input type="text" value={consultorio} onChange={e => setConsultorio(e.target.value)} placeholder="Ej: Clínica Dental Sonrisa Perfecta" className="input-field" />
@@ -573,8 +590,8 @@ export default function IntakeWizard() {
         {/* ════ PASO 2: Servicios y atención ════ */}
         {step === 2 && (
           <div className="bg-bg-card border border-border rounded-2xl p-4 sm:p-7 animate-fadeIn">
-            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Servicios y atención</h2>
-            <p className="text-text-muted text-sm mb-5">Selecciona todos los que apliquen</p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">¿Qué ofreces a tus pacientes?</h2>
+            <p className="text-text-muted text-sm mb-5">Esto nos ayuda a destacar lo que te hace único. ¡Vas muy bien!</p>
 
             <Field label="Servicios que ofreces">
               <div className="flex flex-wrap gap-2">
@@ -677,8 +694,8 @@ export default function IntakeWizard() {
         {/* ════ PASO 3: Perfil profesional ════ */}
         {step === 3 && (
           <div className="bg-bg-card border border-border rounded-2xl p-4 sm:p-7 animate-fadeIn">
-            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Tu perfil profesional</h2>
-            <p className="text-text-muted text-sm mb-5">Información sobre tu experiencia y contenido</p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Lo que te hace único</h2>
+            <p className="text-text-muted text-sm mb-5">Tu experiencia genera confianza en nuevos pacientes. ¡Ya casi terminamos!</p>
 
             <Field label="Años de experiencia">
               <div className="flex flex-wrap gap-2">
@@ -861,8 +878,8 @@ export default function IntakeWizard() {
         {/* ════ PASO 4: Diseño visual ════ */}
         {step === 4 && (
           <div className="bg-bg-card border border-border rounded-2xl p-4 sm:p-7 animate-fadeIn">
-            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Diseño visual</h2>
-            <p className="text-text-muted text-sm mb-5">Elige el estilo y colores de tu web</p>
+            <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Dale personalidad a tu web</h2>
+            <p className="text-text-muted text-sm mb-5">Esta es la parte divertida — elige el estilo que te representa.</p>
 
             <Field label="Estilo visual">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -931,8 +948,8 @@ export default function IntakeWizard() {
         {step === 5 && (
           <div className="animate-fadeIn space-y-4">
             <div className="bg-bg-card border border-border rounded-2xl p-5 sm:p-7">
-              <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Resumen de tu proyecto</h2>
-              <p className="text-text-muted text-sm mb-5">Revisa los datos antes de enviar</p>
+              <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">¡Todo listo!</h2>
+              <p className="text-text-muted text-sm mb-5">Revisa tu resumen y envíalo. En 24 hrs recibirás tu preview gratis.</p>
 
               {/* Plan badge */}
               <div className="flex items-center gap-3 p-3 bg-accent/5 border border-accent/20 rounded-xl mb-5">
@@ -1021,13 +1038,19 @@ export default function IntakeWizard() {
 
             {/* Action buttons */}
             <div className="space-y-3">
-              <button
-                type="button"
-                onClick={sendWhatsApp}
-                className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full text-base font-bold bg-[#25D366] text-white shadow-lg shadow-green-500/20 hover:shadow-green-500/30 hover:brightness-105 min-h-[52px] active:scale-[0.98] transition-all"
-              >
-                <span className="text-lg">📱</span> Enviar por WhatsApp
-              </button>
+              <div>
+                <button
+                  type="button"
+                  onClick={sendWhatsApp}
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-full text-base font-bold bg-accent text-white shadow-lg shadow-accent/20 hover:shadow-accent/30 hover:brightness-105 min-h-[52px] active:scale-[0.98] transition-all"
+                >
+                  Enviar y recibir mi preview gratis
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
+                <p className="text-xs text-text-muted text-center mt-2">Recibirás tu preview personalizada por WhatsApp en 24 hrs</p>
+              </div>
               <div className="flex gap-3">
                 <button
                   type="button"

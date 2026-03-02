@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import IntakeWizard from "@/components/IntakeWizard";
 
 export const metadata: Metadata = {
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 export default function IntakePage() {
   return (
     <main className="min-h-screen bg-bg-alt">
-      <IntakeWizard />
+      <Suspense>
+        <IntakeWizard />
+      </Suspense>
     </main>
   );
 }
