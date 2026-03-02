@@ -984,8 +984,8 @@ function BeforeState({ specialty, doctorTitle, displayName, initials, colors }: 
 
       {/* Bottom callout */}
       <div className="p-3 rounded-xl bg-gradient-to-r from-red-50 to-orange-50 border border-red-100/80 text-center">
-        <p className="text-[11px] sm:text-xs font-bold text-red-800">Tus pacientes te buscan aquí</p>
-        <p className="text-[9px] sm:text-[10px] text-red-600/80 mt-0.5">...y eligen a tu competencia porque tiene web profesional</p>
+        <p className="text-[11px] sm:text-xs font-bold text-red-800">Tu competencia ya tiene web profesional</p>
+        <p className="text-[9px] sm:text-[10px] text-red-600/80 mt-0.5">...y tú no tienes nada que mostrar cuando un paciente te pide tu web</p>
       </div>
     </div>
   );
