@@ -17,22 +17,22 @@ const faqs = [
   {
     question: "¿Tengo que hacer algo después de que mi web esté lista?",
     answer:
-      "No. Tu web funciona en modo automático: hosting, seguridad, velocidad y mantenimiento corren por nuestra cuenta. Si en algún momento quieres actualizar textos, fotos o agregar contenido, nos escribes y lo hacemos. Con el plan Autopilot, además se publican artículos SEO automáticamente cada mes.",
+      "No. Tu web funciona en modo automático: hosting, seguridad, velocidad y mantenimiento corren por nuestra cuenta. Si en algún momento quieres actualizar textos, fotos o agregar contenido, nos escribes y lo hacemos. Con el plan Autopilot, además se publican artículos automáticamente cada mes.",
   },
   {
     question: "¿Qué diferencia hay entre los planes?",
     answer:
-      "Presencia te da lo esencial para existir en Google. Crecimiento agrega galería de casos, antes/después, diplomas e informes mensuales de rendimiento automáticos. Autopilot suma un blog SEO con artículos generados por IA que crece cada mes y mejora tu posicionamiento en Google. Puedes subir de plan cuando quieras.",
+      "Presencia te da lo esencial: web profesional con dominio .cl y WhatsApp. Crecimiento agrega galería de casos, antes/después, diplomas e informes mensuales de rendimiento automáticos. Autopilot suma un blog con artículos generados por IA que crece cada mes y fortalece tu presencia digital. Puedes subir de plan cuando quieras.",
   },
   {
     question: "¿Qué pasa si cancelo mi plan?",
     answer:
-      "Sin contratos ni penalizaciones. Tu web se desactiva al final del periodo pagado. Eso sí, perderás el hosting, dominio, posicionamiento en Google y — en Autopilot — la biblioteca de artículos SEO acumulados. Muchos clientes prefieren mantener el plan porque el valor crece con el tiempo.",
+      "Sin contratos ni penalizaciones. Tu web se desactiva al final del periodo pagado. Eso sí, perderás el hosting, dominio y — en Autopilot — la biblioteca de artículos acumulados. Muchos clientes prefieren mantener el plan porque el valor crece con el tiempo.",
   },
   {
-    question: "¿Mi web va a aparecer en Google?",
+    question: "¿Mi web se puede compartir fácilmente?",
     answer:
-      "Todas nuestras webs están optimizadas para SEO: velocidad de carga, etiquetas correctas, diseño responsive y contenido estructurado. Con el plan Autopilot, el blog con artículos de IA mejora tu posicionamiento cada mes de forma acumulativa.",
+      "Sí. Tu web tiene dominio .cl propio que puedes compartir por WhatsApp, redes sociales, tarjeta de visita o cualquier medio. Además, está optimizada para verse perfecta en celulares, tablets y computadores.",
   },
   {
     question: "¿Qué es el informe mensual de rendimiento?",

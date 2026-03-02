@@ -31,14 +31,14 @@ export default function Hero() {
         </div>
 
         <h1 className="fade-up fade-up-delay-1 text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] tracking-tight">
-          Tus pacientes te buscan en Google.{" "}
-          <span className="gradient-text">¿Te encuentran a ti o a tu competencia?</span>
+          Tu web dental profesional,{" "}
+          <span className="gradient-text">lista en 48 horas</span>
         </h1>
 
         <p className="fade-up fade-up-delay-2 mt-4 sm:mt-8 text-base sm:text-lg lg:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
           Diseñamos tu web dental en{" "}
           <span className="text-text-primary font-semibold">48 horas</span>.{" "}
-          Tú atiendes pacientes, nosotros nos encargamos de que te encuentren en Google y te escriban por WhatsApp.
+          Con dominio .cl propio, WhatsApp integrado y un diseño que transmite confianza a tus pacientes.
         </p>
 
         <div className="fade-up fade-up-delay-3 mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

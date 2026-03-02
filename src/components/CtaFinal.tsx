@@ -22,12 +22,12 @@ export default function CtaFinal() {
         </div>
 
         <h2 className="fade-up fade-up-delay-1 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-          Mientras lees esto, tus pacientes{" "}
-          <span className="gradient-text">buscan dentista en Google</span>
+          Tu consulta merece{" "}
+          <span className="gradient-text">una presencia digital profesional</span>
         </h2>
 
         <p className="fade-up fade-up-delay-2 mt-4 sm:mt-6 text-text-secondary text-base sm:text-lg lg:text-xl max-w-xl mx-auto leading-relaxed">
-          Si no te encuentran a ti, eligen a otro. Escríbenos hoy y en 48 horas tu consulta aparece con una web profesional.
+          Cuando un paciente te pida tu web, ten algo profesional que mostrar. Escríbenos hoy y en 48 horas está lista.
         </p>
 
         <div className="fade-up fade-up-delay-3 mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

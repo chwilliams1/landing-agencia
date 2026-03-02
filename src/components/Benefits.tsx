@@ -48,8 +48,8 @@ const benefits = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
       </svg>
     ),
-    title: "Aparece en Google",
-    description: "Cuando alguien busca \"dentista cerca de mí\", tu consulta aparece. Web optimizada para SEO y velocidad de carga.",
+    title: "Dominio .cl propio",
+    description: "Tu clínica con dirección web profesional. Compártela por WhatsApp, redes sociales o tarjeta de visita.",
   },
   {
     icon: (
@@ -113,7 +113,7 @@ export default function Benefits() {
         <div className="text-center mb-10 sm:mb-16">
           <span className="fade-up text-accent font-semibold text-sm uppercase tracking-widest">¿Por qué DentalWeb?</span>
           <h2 className="fade-up fade-up-delay-1 mt-3 sm:mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-            Tu consulta visible en Google,{" "}
+            Tu presencia digital profesional,{" "}
             <span className="gradient-text">sin esfuerzo técnico</span>
           </h2>
         </div>
