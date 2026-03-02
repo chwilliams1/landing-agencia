@@ -473,8 +473,8 @@ export default function IntakeWizard() {
       // Silencioso: no bloquear UX si falla
     });
 
-    const msg = buildWhatsAppMessage();
-    const url = `https://wa.me/56984494128?text=${encodeURIComponent(msg)}`;
+    const msgCorto = `Hola! Ya envié mi formulario para el plan ${formData.plan} desde dentalweb.cl 🦷\n\nConsultorio: ${formData.consultorio}\nDoctor/a: ${formData.doctor}\n\nQuedo atento/a al preview gratuito. ¡Gracias!`;
+    const url = `https://wa.me/56984494128?text=${encodeURIComponent(msgCorto)}`;
     window.open(url, "_blank");
   }
 
