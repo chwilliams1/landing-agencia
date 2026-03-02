@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { getSupabase } from "@/lib/supabase";
+import { getDb } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
-    const supabase = getSupabase();
-    if (!supabase) {
-      console.warn("Supabase not configured — lead not saved");
+    const sql = getDb();
+    if (!sql) {
+      console.warn("DATABASE_URL not configured — lead not saved");
       return NextResponse.json(
         { success: false, error: "Database not configured" },
         { status: 503 },
@@ -14,22 +14,17 @@ export async function POST(request: Request) {
 
     const body = await request.json();
 
-    const { error } = await supabase.from("leads").insert({
-      consultorio: body.consultorio || null,
-      doctor: body.doctor || null,
-      whatsapp: body.whatsapp || null,
-      email: body.email || null,
-      plan: body.plan || null,
-      form_data: body,
-    });
-
-    if (error) {
-      console.error("Supabase insert error:", error);
-      return NextResponse.json(
-        { success: false, error: error.message },
-        { status: 500 },
-      );
-    }
+    await sql`
+      INSERT INTO leads (consultorio, doctor, whatsapp, email, plan, form_data)
+      VALUES (
+        ${body.consultorio || null},
+        ${body.doctor || null},
+        ${body.whatsapp || null},
+        ${body.email || null},
+        ${body.plan || null},
+        ${JSON.stringify(body)}
+      )
+    `;
 
     return NextResponse.json({ success: true });
   } catch (err) {
