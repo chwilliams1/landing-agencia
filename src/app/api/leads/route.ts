@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
-import { getDb } from "@/lib/db";
 import { Resend } from "resend";
+import { getDb } from "@/lib/db";
+
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
+
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "";
 
 export async function POST(request: Request) {
   try {
@@ -27,29 +33,26 @@ export async function POST(request: Request) {
       )
     `;
 
-    // Notificación por email (fire-and-forget)
-    if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY);
+    // Enviar email de notificación (fire-and-forget)
+    if (resend && NOTIFICATION_EMAIL) {
       resend.emails.send({
         from: "DentalWeb <onboarding@resend.dev>",
-        to: "charlesduarte@gmail.com",
-        subject: `Nuevo lead: ${body.consultorio || "Sin nombre"} — Plan ${body.plan || "?"}`,
+        to: NOTIFICATION_EMAIL,
+        subject: `Nuevo lead: ${body.consultorio || "Sin nombre"}`,
         html: `
-          <h2>Nuevo lead desde dentalweb.cl</h2>
+          <h2>Nuevo lead en DentalWeb</h2>
           <table style="border-collapse:collapse;font-family:sans-serif;">
-            <tr><td style="padding:6px 12px;font-weight:bold;">Consultorio</td><td style="padding:6px 12px;">${body.consultorio || "—"}</td></tr>
-            <tr><td style="padding:6px 12px;font-weight:bold;">Doctor/a</td><td style="padding:6px 12px;">${body.doctor || "—"}</td></tr>
-            <tr><td style="padding:6px 12px;font-weight:bold;">WhatsApp</td><td style="padding:6px 12px;">${body.whatsapp || "—"}</td></tr>
-            <tr><td style="padding:6px 12px;font-weight:bold;">Email</td><td style="padding:6px 12px;">${body.email || "—"}</td></tr>
-            <tr><td style="padding:6px 12px;font-weight:bold;">Plan</td><td style="padding:6px 12px;">${body.plan || "—"} (${body.planPrice || ""})</td></tr>
-            <tr><td style="padding:6px 12px;font-weight:bold;">Especialidad</td><td style="padding:6px 12px;">${body.especialidad || "—"}</td></tr>
-            <tr><td style="padding:6px 12px;font-weight:bold;">Dirección</td><td style="padding:6px 12px;">${body.direccion || "—"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Consultorio</td><td>${body.consultorio || "-"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Doctor/a</td><td>${body.doctor || "-"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">WhatsApp</td><td>${body.whatsapp || "-"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Email</td><td>${body.email || "-"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Plan</td><td>${body.plan || "-"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Especialidad</td><td>${body.especialidad || "-"}</td></tr>
+            <tr><td style="padding:4px 12px 4px 0;font-weight:bold;">Dirección</td><td>${body.direccion || "-"}</td></tr>
           </table>
-          <p style="margin-top:16px;color:#666;font-size:13px;">Ve todos los datos completos en <a href="https://console.neon.tech">Neon Dashboard</a></p>
+          <p style="margin-top:16px;color:#666;font-size:13px;">Ver todos los datos en el dashboard de Neon.</p>
         `,
-      }).catch((err) => {
-        console.error("Resend email error:", err);
-      });
+      }).catch((err) => console.error("Resend error:", err));
     }
 
     return NextResponse.json({ success: true });
