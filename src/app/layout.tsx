@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     description:
       "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
   },
+  verification: {
+    google: "MdRUM9n9CqXSpY2NDw2xKPg2GwdmZEtZKd5CqsHPB0s",
+  },
   robots: { index: true, follow: true },
   icons: {
     icon: [
