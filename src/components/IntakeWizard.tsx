@@ -251,7 +251,7 @@ function ValidatedField({ label, hint, error, valid, children, mb = true }: {
 interface Diploma { nombre: string; institucion: string; }
 interface MiembroEquipo { nombre: string; especialidad: string; bio: string; }
 
-export default function IntakeWizard() {
+export default function IntakeWizard({ estudiante = false }: { estudiante?: boolean } = {}) {
   const [step, setStep] = useState(1);
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -388,6 +388,13 @@ export default function IntakeWizard() {
 
   const planLevel = plan === "presencia" ? 1 : plan === "crecimiento" ? 2 : 3;
   const planData = planes.find(p => p.id === plan)!;
+
+  // Student discount: 30% off for 6 months
+  const displayPlanes = planes.map(p => {
+    if (!estudiante) return { ...p, originalPrice: "" };
+    const discountedNum = Math.round(p.priceNum * 0.7);
+    return { ...p, originalPrice: p.price, price: `$${discountedNum.toLocaleString("es-CL")}`, priceNum: discountedNum };
+  });
 
   function toggleArray(arr: string[], val: string, on: boolean) {
     return on ? [...arr, val] : arr.filter(v => v !== val);
@@ -819,8 +826,13 @@ export default function IntakeWizard() {
 
             {/* Plan selector */}
             <Field label="Selecciona tu plan">
+              {estudiante && (
+                <div className="mb-3 inline-flex items-center gap-1.5 bg-violet-500/10 text-violet-600 text-xs font-bold px-3 py-1.5 rounded-full">
+                  🎓 30% OFF por 6 meses
+                </div>
+              )}
               <div className="space-y-3">
-                {planes.map(p => (
+                {displayPlanes.map(p => (
                   <label
                     key={p.id}
                     className={`block p-4 sm:p-5 rounded-xl border-2 cursor-pointer transition-all active:scale-[0.98] ${
@@ -836,7 +848,10 @@ export default function IntakeWizard() {
                         <span className="text-xl shrink-0">{p.emoji}</span>
                         <span className="text-sm font-bold text-text-primary">{p.name}</span>
                       </div>
-                      <div className="text-right shrink-0">
+                      <div className="text-right shrink-0 flex items-baseline gap-1.5">
+                        {p.originalPrice && (
+                          <span className="text-sm text-text-muted line-through">{p.originalPrice}</span>
+                        )}
                         <span className="text-base sm:text-lg font-extrabold text-accent">{p.price}</span>
                         <span className="text-[11px] text-text-muted">/mes</span>
                       </div>
