@@ -7,7 +7,7 @@ import Benefits from "@/components/Benefits";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 import AddOns from "@/components/AddOns";
-
+import RoiCalculator from "@/components/RoiCalculator";
 import AboutUs from "@/components/AboutUs";
 import FAQ from "@/components/FAQ";
 import CtaFinal from "@/components/CtaFinal";
@@ -29,6 +29,7 @@ export default function Home() {
         <AddOns />
         <AboutUs />
         <Pricing />
+        <RoiCalculator />
         <FAQ />
         <CtaFinal />
       </main>
