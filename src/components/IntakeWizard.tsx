@@ -266,7 +266,7 @@ export default function IntakeWizard() {
   function validateStep(s: number): string[] {
     const errs: string[] = [];
     if (s === 1) {
-      if (!consultorio.trim()) errs.push("Nombre del consultorio");
+      if (!consultorio.trim()) errs.push("Nombre de tu consulta o marca profesional");
       if (!doctor.trim()) errs.push("Doctor/a responsable");
       if (!whatsapp.trim()) errs.push("WhatsApp");
       else if (!/^\+?\d[\d\s\-]{7,15}$/.test(whatsapp.trim())) errs.push("WhatsApp: ingresa un número válido (ej: +56 9 1234 5678)");
@@ -564,8 +564,8 @@ export default function IntakeWizard() {
             <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Cuéntanos de tu consulta</h2>
             <p className="text-text-muted text-sm mb-5">Con estos datos armamos la base de tu web. Solo toma 2 minutos.</p>
 
-            <Field label="Nombre del consultorio *">
-              <input type="text" value={consultorio} onChange={e => setConsultorio(e.target.value)} placeholder="Ej: Clínica Dental Sonrisa Perfecta" className="input-field" />
+            <Field label="Nombre de tu consulta o marca profesional *">
+              <input type="text" value={consultorio} onChange={e => setConsultorio(e.target.value)} placeholder="Ej: Clínica Sonrisa, Dra. María López Dental, etc." className="input-field" />
             </Field>
             <Field label="Doctor/a responsable *">
               <input type="text" value={doctor} onChange={e => setDoctor(e.target.value)} placeholder="Dr./Dra. Nombre Apellido" className="input-field" />
