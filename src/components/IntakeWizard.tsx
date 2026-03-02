@@ -556,20 +556,20 @@ export default function IntakeWizard() {
                     <input type="radio" name="plan" value={p.id} checked={plan === p.id} onChange={() => setPlan(p.id)} className="sr-only" />
                     {/* Header: nombre + precio */}
                     <div className="flex items-center justify-between gap-2 mb-1">
-                      <div className="flex items-center gap-2 min-w-0">
+                      <div className="flex items-center gap-2">
                         <span className="text-xl shrink-0">{p.emoji}</span>
-                        <span className="text-sm font-bold text-text-primary truncate">{p.name}</span>
-                        {p.featured && (
-                          <span className="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0">
-                            Recomendado
-                          </span>
-                        )}
+                        <span className="text-sm font-bold text-text-primary">{p.name}</span>
                       </div>
                       <div className="text-right shrink-0">
                         <span className="text-base sm:text-lg font-extrabold text-accent">{p.price}</span>
                         <span className="text-[11px] text-text-muted">/mes</span>
                       </div>
                     </div>
+                    {p.featured && (
+                      <span className="inline-block bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mb-1">
+                        Recomendado
+                      </span>
+                    )}
                     <p className="text-xs text-text-muted mb-2">{p.tagline}</p>
                     <div className="flex flex-wrap gap-x-2 gap-y-1">
                       {p.features.map(f => (
