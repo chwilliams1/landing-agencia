@@ -10,6 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dentalweb.cl"),
   title: "Páginas Web para Dentistas en La Serena | Tu Web Dental en 48 Horas",
   description:
     "Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Diseño premium con IA, SEO optimizado, WhatsApp integrado. Lista en 48 horas desde $19.990/mes.",
