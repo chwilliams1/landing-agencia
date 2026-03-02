@@ -9,11 +9,20 @@ interface BlogCardProps {
 }
 
 const EMOJI_MAP: Record<string, string> = {
-  "cuanto-cuesta": "💰",
+  "cuanto-cuesta-pagina": "💰",
+  "cuanto-cuesta-equipar": "🪑",
   "google": "🔍",
   "checklist": "✅",
   "necesita": "🌐",
   "diferenciarte": "🏆",
+  "facturacion": "🧾",
+  "abrir-clinica": "🏗️",
+  "inteligencia-artificial": "🤖",
+  "software": "💻",
+  "instagram": "📸",
+  "cursos": "🎓",
+  "atraer-pacientes": "🧲",
+  "chatbot": "💬",
 };
 
 function getEmoji(slug: string): string {
