@@ -265,7 +265,10 @@ export default function IntakeWizard() {
       if (!consultorio.trim()) errs.push("Nombre del consultorio");
       if (!doctor.trim()) errs.push("Doctor/a responsable");
       if (!whatsapp.trim()) errs.push("WhatsApp");
+      else if (!/^\+?\d[\d\s\-]{7,15}$/.test(whatsapp.trim())) errs.push("WhatsApp: ingresa un número válido (ej: +56 9 1234 5678)");
+      if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) errs.push("Email: ingresa un email válido");
       if (!direccion.trim()) errs.push("Dirección");
+      if (dominio.trim() && !/^[a-zA-Z0-9]([a-zA-Z0-9\-]*\.)+[a-zA-Z]{2,}$/.test(dominio.trim())) errs.push("Dominio: ingresa un dominio válido (ej: miclínica.cl)");
     }
     if (s === 2) {
       if (servicios.length === 0) errs.push("Al menos un servicio");
@@ -576,10 +579,10 @@ export default function IntakeWizard() {
 
             <div className="grid sm:grid-cols-2 gap-3 mb-4">
               <Field label="WhatsApp *" mb={false}>
-                <input type="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value)} placeholder="+56 9 1234 5678" className="input-field" />
+                <input type="tel" inputMode="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value.replace(/[^+\d\s\-]/g, ""))} placeholder="+56 9 1234 5678" className="input-field" />
               </Field>
               <Field label="Email" mb={false}>
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="contacto@clinica.cl" className="input-field" />
+                <input type="email" inputMode="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="contacto@clinica.cl" className="input-field" />
               </Field>
             </div>
 
@@ -590,7 +593,7 @@ export default function IntakeWizard() {
               <textarea value={redes} onChange={e => setRedes(e.target.value)} rows={2} placeholder={"Instagram: ...\nFacebook: ..."} className="input-field" />
             </Field>
             <Field label="Dominio deseado" hint="Si ya tienes uno o tienes preferencia. Ej: sonrisaperfecta.cl">
-              <input type="text" value={dominio} onChange={e => setDominio(e.target.value)} placeholder="miclínica.cl" className="input-field" />
+              <input type="text" value={dominio} onChange={e => setDominio(e.target.value.replace(/[^a-zA-Z0-9.\-]/g, ""))} placeholder="sonrisaperfecta.cl" className="input-field" />
             </Field>
 
             {/* Plan selector */}
