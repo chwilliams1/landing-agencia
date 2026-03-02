@@ -1,6 +1,45 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useInView } from "@/hooks/useInView";
+import { useCountUp } from "@/hooks/useCountUp";
+
+const BENEFIT_STATS = [
+  { value: 500, suffix: "+", prefix: "", label: "Webs creadas", decimals: 0 },
+  { value: 48, suffix: "h", prefix: "", label: "Promedio entrega", decimals: 0 },
+  { value: 150, suffix: "k", prefix: "$", label: "Ahorro vs agencia", decimals: 0 },
+];
+
+function BenefitStat({
+  value,
+  suffix,
+  prefix,
+  label,
+  decimals,
+  active,
+}: {
+  value: number;
+  suffix: string;
+  prefix: string;
+  label: string;
+  decimals: number;
+  active: boolean;
+}) {
+  const count = useCountUp(value, active, decimals);
+
+  return (
+    <div className="text-center">
+      <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy">
+        {prefix}
+        {count}
+        <span className="text-accent">{suffix}</span>
+      </div>
+      <div className="mt-1 text-xs sm:text-sm text-text-secondary font-medium">
+        {label}
+      </div>
+    </div>
+  );
+}
 
 const benefits = [
   {
@@ -44,6 +83,25 @@ const benefits = [
 
 export default function Benefits() {
   const ref = useInView();
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [triggered, setTriggered] = useState(false);
+
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTriggered(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="py-16 sm:py-24 lg:py-32 relative bg-bg-alt overflow-hidden" ref={ref}>
@@ -58,6 +116,25 @@ export default function Benefits() {
             Tu consulta visible en Google,{" "}
             <span className="gradient-text">sin esfuerzo técnico</span>
           </h2>
+        </div>
+
+        {/* Animated counter strip */}
+        <div
+          ref={statsRef}
+          className="grid grid-cols-3 gap-6 sm:gap-8 max-w-2xl mx-auto mb-10 sm:mb-14"
+        >
+          {BENEFIT_STATS.map((stat, i) => (
+            <div key={stat.label} className={`fade-up fade-up-delay-${i + 1}`}>
+              <BenefitStat
+                value={stat.value}
+                suffix={stat.suffix}
+                prefix={stat.prefix}
+                label={stat.label}
+                decimals={stat.decimals}
+                active={triggered}
+              />
+            </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
