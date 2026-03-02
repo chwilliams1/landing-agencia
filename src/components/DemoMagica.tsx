@@ -14,6 +14,8 @@ const specialties = [
   "Estética Dental",
   "Periodoncia",
   "Cirugía Maxilofacial",
+  "Estética Facial",
+  "Rehabilitación Oral",
 ];
 
 const colorsBySpecialty: Record<string, { primary: string; light: string; bg: string }> = {
@@ -25,6 +27,8 @@ const colorsBySpecialty: Record<string, { primary: string; light: string; bg: st
   "Estética Dental": { primary: "#B45309", light: "#FCD34D", bg: "#FFFBEB" },
   "Periodoncia": { primary: "#059669", light: "#6EE7B7", bg: "#ECFDF5" },
   "Cirugía Maxilofacial": { primary: "#4338CA", light: "#818CF8", bg: "#EEF2FF" },
+  "Estética Facial": { primary: "#9D174D", light: "#F472B6", bg: "#FFF1F2" },
+  "Rehabilitación Oral": { primary: "#0369A1", light: "#38BDF8", bg: "#F0F9FF" },
 };
 
 const servicesBySpecialty: Record<string, string[]> = {
@@ -36,6 +40,8 @@ const servicesBySpecialty: Record<string, string[]> = {
   "Estética Dental": ["Carillas", "Blanqueamiento", "Diseño de Sonrisa", "Coronas"],
   "Periodoncia": ["Limpieza Profunda", "Cirugía Periodontal", "Injerto Encía", "Mantenimiento"],
   "Cirugía Maxilofacial": ["Extracción Muelas", "Cirugía Ortognática", "Biopsia", "Implantes Complejos"],
+  "Estética Facial": ["Botox Dental", "Ácido Hialurónico", "Armonización Facial", "Diseño de Sonrisa"],
+  "Rehabilitación Oral": ["Prótesis Fija", "Prótesis Removible", "Coronas y Puentes", "Implantes + Prótesis"],
 };
 
 const credentialsBySpecialty: Record<string, { year: string; text: string }[]> = {
@@ -79,6 +85,16 @@ const credentialsBySpecialty: Record<string, { year: string; text: string }[]> =
     { year: "2015", text: "Especialista Cirugía Maxilofacial — U. de Chile" },
     { year: "2020", text: "Fellowship Trauma Facial — Hospital Barros Luco" },
   ],
+  "Estética Facial": [
+    { year: "2014", text: "Cirujano Dentista — U. de Chile" },
+    { year: "2018", text: "Diplomado Estética Facial — U. de los Andes" },
+    { year: "2022", text: "Certificación Botox y Ácido Hialurónico — SBCP" },
+  ],
+  "Rehabilitación Oral": [
+    { year: "2012", text: "Cirujano Dentista — U. de Valparaíso" },
+    { year: "2016", text: "Especialista en Rehabilitación Oral — U. de Chile" },
+    { year: "2021", text: "Diplomado Prótesis sobre Implantes — U. de los Andes" },
+  ],
 };
 
 const quotesBySpecialty: Record<string, string> = {
@@ -90,6 +106,8 @@ const quotesBySpecialty: Record<string, string> = {
   "Estética Dental": "El diseño de sonrisa es arte y ciencia. Cada detalle importa para un resultado natural y armónico.",
   "Periodoncia": "Las encías son la base de una boca sana. Prevenir hoy es la mejor inversión para tu sonrisa.",
   "Cirugía Maxilofacial": "La cirugía bien planificada es segura y predecible. La tecnología es mi mejor aliada.",
+  "Estética Facial": "La armonización facial complementa la sonrisa. Busco resultados naturales que realcen tu belleza.",
+  "Rehabilitación Oral": "Devolver la función y estética a cada paciente es mi misión. Cada caso es único y merece un plan personalizado.",
 };
 
 const galleryBySpecialty: Record<string, { title: string; tag: string }[]> = {
@@ -132,6 +150,16 @@ const galleryBySpecialty: Record<string, { title: string; tag: string }[]> = {
     { title: "Extracción Compleja", tag: "Cirugía" },
     { title: "Cirugía Ortognática", tag: "Corrección" },
     { title: "Implante Zigomático", tag: "Avanzado" },
+  ],
+  "Estética Facial": [
+    { title: "Armonización Completa", tag: "Facial" },
+    { title: "Labios Naturales", tag: "Hialurónico" },
+    { title: "Sonrisa + Rostro", tag: "Integral" },
+  ],
+  "Rehabilitación Oral": [
+    { title: "Rehabilitación Completa", tag: "Full Mouth" },
+    { title: "Coronas Cerámicas", tag: "Estética" },
+    { title: "Prótesis sobre Implantes", tag: "Fija" },
   ],
 };
 
@@ -297,6 +325,8 @@ const serviceIconComponents: Record<string, React.FC<{ className?: string }>> = 
   "Estética Dental": SparkleToothIcon,
   "Periodoncia": GumIcon,
   "Cirugía Maxilofacial": ScalpelIcon,
+  "Estética Facial": SparkleToothIcon,
+  "Rehabilitación Oral": ToothIcon,
 };
 
 const serviceIconMap: Record<string, React.FC<{ className?: string }>[]> = {
@@ -308,6 +338,8 @@ const serviceIconMap: Record<string, React.FC<{ className?: string }>[]> = {
   "Estética Dental": [SparkleToothIcon, SparkleToothIcon, SparkleToothIcon, ToothIcon],
   "Periodoncia": [GumIcon, GumIcon, GumIcon, ShieldToothIcon],
   "Cirugía Maxilofacial": [ScalpelIcon, ScalpelIcon, SearchToothIcon, ImplantIcon],
+  "Estética Facial": [SparkleToothIcon, SparkleToothIcon, ToothIcon, ShieldToothIcon],
+  "Rehabilitación Oral": [ToothIcon, ImplantIcon, ToothIcon, ShieldToothIcon],
 };
 
 /* ──────────────── PREVIEW SUB-COMPONENTS ───────────────────── */

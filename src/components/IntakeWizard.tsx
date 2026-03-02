@@ -15,6 +15,8 @@ const specialties = [
   { emoji: "🩺", label: "Periodoncia" },
   { emoji: "🏥", label: "Cirugía maxilofacial" },
   { emoji: "🫦", label: "Prótesis / Rehabilitación" },
+  { emoji: "💆", label: "Estética Facial" },
+  { emoji: "🦷", label: "Rehabilitación Oral" },
   { emoji: "📷", label: "Radiología oral" },
   { emoji: "⚖️", label: "Odontología legal" },
   { emoji: "💊", label: "Patología oral" },
@@ -38,6 +40,8 @@ const servicesList = [
   { emoji: "🩺", label: "Periodoncia" },
   { emoji: "📷", label: "Radiografías/3D" },
   { emoji: "🏥", label: "Cirugía maxilofacial" },
+  { emoji: "💆", label: "Estética Facial" },
+  { emoji: "🦷", label: "Rehabilitación Oral" },
 ];
 
 const estrellaOptions = [
