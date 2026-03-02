@@ -152,8 +152,8 @@ const planes = [
     name: "Presencia",
     price: "$19.990",
     priceNum: 19990,
-    tagline: "Tu consulta visible en Google, 24/7",
-    features: ["Web profesional de una página", "WhatsApp integrado", "Perfil del doctor", "Tratamientos", "Horarios y mapa", "SEO base"],
+    tagline: "Tu consulta con presencia digital profesional",
+    features: ["Web profesional de una página", "WhatsApp integrado", "Perfil del doctor", "Tratamientos", "Horarios y mapa", "Diseño responsive"],
   },
   {
     id: "crecimiento" as PlanId,
@@ -172,7 +172,7 @@ const planes = [
     price: "$49.990",
     priceNum: 49990,
     tagline: "Marketing dental automatizado con IA",
-    features: ["Todo lo de Crecimiento", "Blog SEO con IA", "Equipo médico", "Convenios Fonasa/Isapre", "Soporte prioritario", "Hasta 10 páginas"],
+    features: ["Todo lo de Crecimiento", "Blog con IA", "Equipo médico", "Convenios Fonasa/Isapre", "Soporte prioritario", "Hasta 10 páginas"],
   },
 ];
 

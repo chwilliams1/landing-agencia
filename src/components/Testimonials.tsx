@@ -10,7 +10,7 @@ const testimonials = [
     role: "Odontóloga General — La Serena",
     stars: 5,
     quote:
-      "En menos de 48 horas tenía mi web funcionando. Mis pacientes ahora me encuentran en Google y me escriben directo por WhatsApp. Mejor inversión del año.",
+      "En menos de 48 horas tenía mi web funcionando. Mis pacientes ahora me escriben directo por WhatsApp apenas ven la web. Mejor inversión del año.",
   },
   {
     name: "Dr. Felipe Araya",
@@ -19,7 +19,7 @@ const testimonials = [
     role: "Ortodoncista — Coquimbo",
     stars: 5,
     quote:
-      "Me sorprendió lo rápido y profesional que quedó todo. Antes dependía solo de Instagram, ahora tengo presencia real en Google y los pacientes llegan solos.",
+      "Me sorprendió lo rápido y profesional que quedó todo. Antes dependía solo de Instagram, ahora tengo una web profesional que comparto por todos lados.",
   },
   {
     name: "Dra. Valentina Rojas",

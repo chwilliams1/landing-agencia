@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://dentalweb.cl"),
   title: "Páginas Web para Dentistas en La Serena | Tu Web Dental en 48 Horas",
   description:
-    "Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Diseño premium con IA, SEO optimizado, WhatsApp integrado. Lista en 48 horas desde $19.990/mes.",
+    "Creamos páginas web profesionales para dentistas en La Serena y todo Chile. Diseño premium, WhatsApp integrado y dominio .cl propio. Lista en 48 horas desde $19.990/mes.",
   keywords:
     "web dentista la serena, página web dentista, web clínica dental, diseño web odontología, web para dentistas chile",
   openGraph: {
     title: "Páginas Web para Dentistas | Tu Web Dental en 48 Horas",
     description:
-      "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
+      "Diseño web profesional para dentistas. WhatsApp integrado y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
     type: "website",
     locale: "es_CL",
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Páginas Web para Dentistas | Tu Web Dental en 48 Horas",
     description:
-      "Diseño web profesional para dentistas con IA. SEO, WhatsApp y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
+      "Diseño web profesional para dentistas. WhatsApp integrado y dominio .cl incluido. Lista en 48 horas desde $19.990/mes.",
   },
   verification: {
     google: "MdRUM9n9CqXSpY2NDw2xKPg2GwdmZEtZKd5CqsHPB0s",

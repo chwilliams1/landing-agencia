@@ -29,9 +29,9 @@ export default function AboutUs() {
               <div className="absolute -left-[25px] sm:-left-[29px] top-1 w-4 h-4 rounded-full bg-accent/20 border-2 border-accent flex items-center justify-center">
                 <div className="w-1.5 h-1.5 rounded-full bg-accent" />
               </div>
-              <h3 className="text-lg font-bold text-text-primary mb-2">Buenos dentistas invisibles en Google</h3>
+              <h3 className="text-lg font-bold text-text-primary mb-2">Buenos dentistas sin presencia digital</h3>
               <p className="text-text-secondary text-sm sm:text-base leading-relaxed">
-                Todo partió buscando dentista en Google. Profesionales con años de experiencia y excelente reputación simplemente <strong className="text-text-primary">no aparecían en internet</strong>. No tenían web, o tenían una página desactualizada que no reflejaba la calidad de su trabajo. Mientras tanto, sus pacientes potenciales elegían a quien sí tenía presencia online.
+                Todo partió conociendo grandes dentistas. Profesionales con años de experiencia y excelente reputación simplemente <strong className="text-text-primary">no tenían presencia en internet</strong>. No tenían web, o tenían una página desactualizada que no reflejaba la calidad de su trabajo. Cuando un paciente les pedía su web, no tenían nada profesional que mostrar.
               </p>
             </div>
 

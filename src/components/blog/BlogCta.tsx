@@ -7,7 +7,7 @@ export default function BlogCta() {
         ¿Listo para tu web dental?
       </p>
       <p className="text-text-secondary mb-6 max-w-lg mx-auto">
-        Páginas web profesionales para dentistas, listas en 48 horas. SEO, WhatsApp y dominio .cl incluido.
+        Páginas web profesionales para dentistas, listas en 48 horas. WhatsApp integrado y dominio .cl incluido.
       </p>
       <Link
         href="/intake"

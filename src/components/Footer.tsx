@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <img src="/logo.png" alt="DentalWeb" className="h-10 w-auto brightness-0 invert" />
             <p className="mt-2 text-sm text-gray-400 leading-relaxed max-w-xs">
-              Diseñamos webs profesionales exclusivamente para dentistas. Tu consulta visible en Google, tus pacientes a un click.
+              Diseñamos webs profesionales exclusivamente para dentistas. Tu consulta con presencia digital profesional, tus pacientes a un click.
             </p>
           </div>
 
