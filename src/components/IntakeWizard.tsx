@@ -44,6 +44,21 @@ const servicesList = [
   { emoji: "🦷", label: "Rehabilitación Oral" },
 ];
 
+const specialtyServiceMap: Record<string, string[]> = {
+  "General": ["Limpieza", "Extracciones", "Endodoncia"],
+  "Ortodoncia": ["Brackets", "Alineadores"],
+  "Implantes": ["Implantes", "Prótesis"],
+  "Estética": ["Carillas", "Blanqueamiento", "Diseño de sonrisa"],
+  "Odontopediatría": ["Niños", "Limpieza"],
+  "Endodoncia": ["Endodoncia"],
+  "Periodoncia": ["Periodoncia", "Limpieza"],
+  "Cirugía maxilofacial": ["Cirugía maxilofacial", "Extracciones"],
+  "Prótesis / Rehabilitación": ["Prótesis", "Rehabilitación Oral"],
+  "Estética Facial": ["Estética Facial", "Diseño de sonrisa"],
+  "Rehabilitación Oral": ["Rehabilitación Oral", "Prótesis"],
+  "Radiología oral": ["Radiografías/3D"],
+};
+
 const estrellaOptions = [
   "Blanqueamiento", "Ortodoncia invisible", "Implantes rápidos",
   "Diseño de sonrisa", "Pediatría sin miedo", "Tecnología 3D", "Otro",
@@ -189,6 +204,48 @@ function CheckPill({ name, value, checked, onChange, children }: {
   );
 }
 
+const DRAFT_KEY = "dentalweb-intake-draft";
+
+function parsePaletteLocal(raw: string) {
+  const match = raw?.match(
+    /^(.+?)\s*—\s*Principal\s+(#[0-9a-fA-F]{6}),\s*Secundario\s+(#[0-9a-fA-F]{6}),\s*Acento\s+(#[0-9a-fA-F]{6}),\s*Fondo\s+(#[0-9a-fA-F]{6}),\s*Texto\s+(#[0-9a-fA-F]{6})/
+  );
+  if (!match) return null;
+  return { primary: match[2], secondary: match[3], accent: match[4], bg: match[5], text: match[6] };
+}
+
+const estiloFonts: Record<string, string> = {
+  "Minimalista": "Inter, sans-serif",
+  "Premium": "'Playfair Display', serif",
+  "Cálido": "'Merriweather', serif",
+  "Profesional": "Inter, sans-serif",
+  "Juvenil": "'Poppins', sans-serif",
+  "Infantil": "'Baloo 2', cursive",
+};
+
+function generateSlugLocal(name: string): string {
+  return name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 63);
+}
+
+/* ═══════════════════════════ VALIDATED FIELD ═══════════════════════════ */
+
+function ValidatedField({ label, hint, error, valid, children, mb = true }: {
+  label: string; hint?: string; error: string | null; valid: boolean; children: React.ReactNode; mb?: boolean;
+}) {
+  return (
+    <div className={mb ? "mb-4" : ""}>
+      <label className="flex items-center gap-1.5 text-sm font-semibold text-text-secondary mb-1.5">
+        {label}
+        {valid && <span className="text-green-500 text-xs">✓</span>}
+      </label>
+      {children}
+      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+      {hint && <p className="text-xs text-text-muted mt-1 italic">{hint}</p>}
+    </div>
+  );
+}
+
 /* ═══════════════════════════ COMPONENT ═══════════════════════════ */
 
 interface Diploma { nombre: string; institucion: string; }
@@ -216,6 +273,77 @@ export default function IntakeWizard() {
       setPlan(urlPlan as PlanId);
     }
   }, [searchParams]);
+
+  // Improvement 2: Restore draft from localStorage
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (d.consultorio) setConsultorio(d.consultorio);
+      if (d.doctor) setDoctor(d.doctor);
+      if (d.especialidad) setEspecialidad(d.especialidad);
+      if (d.whatsapp) setWhatsapp(d.whatsapp);
+      if (d.email) setEmail(d.email);
+      if (d.direccion) setDireccion(d.direccion);
+      if (d.redes) setRedes(d.redes);
+      if (d.dominio) setDominio(d.dominio);
+      if (d.plan) setPlan(d.plan);
+      if (d.servicios) setServicios(d.servicios);
+      if (d.estrella) setEstrella(d.estrella);
+      if (d.publico) setPublico(d.publico);
+      if (d.pagos) setPagos(d.pagos);
+      if (d.convenios) setConvenios(d.convenios);
+      if (d.horario) setHorario(d.horario);
+      if (d.horarioCustom) setHorarioCustom(d.horarioCustom);
+      if (d.contacto) setContacto(d.contacto);
+      if (d.ctaPreferido) setCtaPreferido(d.ctaPreferido);
+      if (d.experiencia) setExperiencia(d.experiencia);
+      if (d.bio) setBio(d.bio);
+      if (d.fotos) setFotos(d.fotos);
+      if (d.fotosLink) setFotosLink(d.fotosLink);
+      if (d.antesDespues) setAntesDespues(d.antesDespues);
+      if (d.testimonios) setTestimonios(d.testimonios);
+      if (d.diplomas?.length) setDiplomas(d.diplomas);
+      if (d.equipo?.length) setEquipo(d.equipo);
+      if (d.mostrarConveniosWeb) setMostrarConveniosWeb(d.mostrarConveniosWeb);
+      if (d.estilo) setEstilo(d.estilo);
+      if (d.paleta) setPaleta(d.paleta);
+      if (d.logo) setLogo(d.logo);
+      if (d.slogan) setSlogan(d.slogan);
+      if (d.sloganCustom) setSloganCustom(d.sloganCustom);
+      if (d.referencia) setReferencia(d.referencia);
+      if (d.notas) setNotas(d.notas);
+      if (d.step) setStep(d.step);
+      if (d.completedSteps) setCompletedSteps(new Set(d.completedSteps));
+      if (d.touched) setTouched(d.touched);
+      setHasDraft(true);
+    } catch { /* ignore */ }
+  }, []);
+
+  // Improvement 2: Save draft to localStorage with debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify({
+          consultorio, doctor, especialidad, whatsapp, email, direccion,
+          redes, dominio, plan, servicios, estrella, publico, pagos,
+          convenios, horario, horarioCustom, contacto, ctaPreferido,
+          experiencia, bio, fotos, fotosLink, antesDespues, testimonios,
+          diplomas, equipo, mostrarConveniosWeb, estilo, paleta, logo,
+          slogan, sloganCustom, referencia, notas, step,
+          completedSteps: Array.from(completedSteps), touched,
+        }));
+      } catch { /* ignore */ }
+    }, 500);
+    return () => clearTimeout(timer);
+  });
+
+  function clearDraft() {
+    localStorage.removeItem(DRAFT_KEY);
+    setHasDraft(false);
+    window.location.reload();
+  }
 
   // Step 2 — Servicios
   const [servicios, setServicios] = useState<string[]>([]);
@@ -255,12 +383,86 @@ export default function IntakeWizard() {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     consulta: true, servicios: true, perfil: true, diseno: true,
   });
+  const [hasDraft, setHasDraft] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const planLevel = plan === "presencia" ? 1 : plan === "crecimiento" ? 2 : 3;
   const planData = planes.find(p => p.id === plan)!;
 
   function toggleArray(arr: string[], val: string, on: boolean) {
     return on ? [...arr, val] : arr.filter(v => v !== val);
+  }
+
+  // Improvement 1: Auto-select services by specialty
+  function handleEspecialidadChange(val: string) {
+    setEspecialidad(val);
+    const suggested = specialtyServiceMap[val] || [];
+    if (suggested.length > 0) {
+      setServicios(prev => Array.from(new Set([...prev, ...suggested])));
+    }
+  }
+
+  // Improvement 6: Auto-format WhatsApp
+  function formatWhatsApp(raw: string): string {
+    let digits = raw.replace(/\D/g, "");
+    if (digits.startsWith("9") && digits.length <= 9) digits = "56" + digits;
+    if (digits.startsWith("56")) {
+      const rest = digits.slice(2);
+      if (rest.length === 0) return "+56";
+      if (rest.length <= 1) return `+56 ${rest}`;
+      if (rest.length <= 5) return `+56 ${rest[0]} ${rest.slice(1)}`;
+      return `+56 ${rest[0]} ${rest.slice(1, 5)} ${rest.slice(5, 9)}`;
+    }
+    if (digits.length > 0) return "+" + digits;
+    return "";
+  }
+
+  // Improvement 7: Auto-suggest subdomain
+  const suggestedSlug = consultorio.trim() ? generateSlugLocal(consultorio) : "";
+
+  // Improvement 8: Real-time validation
+  function markTouched(field: string) {
+    setTouched(prev => ({ ...prev, [field]: true }));
+  }
+
+  function fieldError(field: string): string | null {
+    switch (field) {
+      case "consultorio": return !consultorio.trim() ? "Campo obligatorio" : null;
+      case "doctor": return !doctor.trim() ? "Campo obligatorio" : null;
+      case "whatsapp":
+        if (!whatsapp.trim()) return "Campo obligatorio";
+        if (!/^\+?\d[\d\s\-]{7,15}$/.test(whatsapp.trim())) return "Número inválido";
+        return null;
+      case "email":
+        if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return "Email inválido";
+        return null;
+      case "direccion": return !direccion.trim() ? "Campo obligatorio" : null;
+      case "dominio":
+        if (dominio.trim() && !/^[a-zA-Z0-9]([a-zA-Z0-9\-]*\.)+[a-zA-Z]{2,}$/.test(dominio.trim())) return "Dominio inválido";
+        return null;
+      default: return null;
+    }
+  }
+
+  function fieldIsValid(field: string): boolean {
+    const err = fieldError(field);
+    switch (field) {
+      case "consultorio": return !!consultorio.trim() && !err;
+      case "doctor": return !!doctor.trim() && !err;
+      case "whatsapp": return !!whatsapp.trim() && !err;
+      case "email": return !!email.trim() && !err;
+      case "direccion": return !!direccion.trim() && !err;
+      case "dominio": return !!dominio.trim() && !err;
+      default: return false;
+    }
+  }
+
+  // Validation helpers for inline use (ValidatedField moved outside component to prevent focus loss)
+  function getFieldValidation(name: string) {
+    return {
+      error: touched[name] ? fieldError(name) : null,
+      valid: fieldIsValid(name),
+    };
   }
 
   function validateStep(s: number): string[] {
@@ -299,6 +501,8 @@ export default function IntakeWizard() {
   function tryNext(nextStep: number) {
     const errs = validateStep(step);
     if (errs.length > 0) {
+      // mark all fields in this step as touched
+      if (step === 1) ["consultorio","doctor","whatsapp","email","direccion","dominio"].forEach(f => markTouched(f));
       setErrors(errs);
       return;
     }
@@ -480,6 +684,8 @@ export default function IntakeWizard() {
       // Silencioso: no bloquear UX si falla
     });
 
+    try { localStorage.removeItem(DRAFT_KEY); } catch { /* ignore */ }
+
     const msgCorto = `Hola! Ya envié mi formulario para el plan ${formData.plan} desde dentalweb.cl 🦷\n\nConsultorio: ${formData.consultorio}\nDoctor/a: ${formData.doctor}\n\nQuedo atento/a al preview gratuito. ¡Gracias!`;
     const url = `https://wa.me/56984494128?text=${encodeURIComponent(msgCorto)}`;
     window.open(url, "_blank");
@@ -553,6 +759,12 @@ export default function IntakeWizard() {
         <p className="text-xs text-text-muted text-center mt-2 mb-4">
           Paso {step} de 5 — {["Empecemos", "Casi a la mitad", "¡Vas genial!", "Último paso de datos", "¡A enviar!"][step - 1]}
         </p>
+        {hasDraft && (
+          <button type="button" onClick={clearDraft}
+            className="text-xs text-text-muted underline hover:text-red-500 transition-colors mt-1">
+            Borrar borrador guardado
+          </button>
+        )}
       </div>
 
       {/* ── Cards ── */}
@@ -564,17 +776,17 @@ export default function IntakeWizard() {
             <h2 className="text-lg sm:text-xl font-extrabold text-accent mb-0.5">Cuéntanos de tu consulta</h2>
             <p className="text-text-muted text-sm mb-5">Con estos datos armamos la base de tu web. Solo toma 2 minutos.</p>
 
-            <Field label="Nombre de tu consulta o marca profesional *">
-              <input type="text" value={consultorio} onChange={e => setConsultorio(e.target.value)} placeholder="Ej: Clínica Sonrisa, Dra. María López Dental, etc." className="input-field" />
-            </Field>
-            <Field label="Doctor/a responsable *">
-              <input type="text" value={doctor} onChange={e => setDoctor(e.target.value)} placeholder="Dr./Dra. Nombre Apellido" className="input-field" />
-            </Field>
+            <ValidatedField {...getFieldValidation("consultorio")} label="Nombre de tu consulta o marca profesional *">
+              <input type="text" value={consultorio} onChange={e => setConsultorio(e.target.value)} onBlur={() => markTouched("consultorio")} placeholder="Ej: Clínica Sonrisa, Dra. María López Dental, etc." className="input-field" />
+            </ValidatedField>
+            <ValidatedField {...getFieldValidation("doctor")} label="Doctor/a responsable *">
+              <input type="text" value={doctor} onChange={e => setDoctor(e.target.value)} onBlur={() => markTouched("doctor")} placeholder="Dr./Dra. Nombre Apellido" className="input-field" />
+            </ValidatedField>
 
             <Field label="Especialidad principal">
               <div className="flex flex-wrap gap-2">
                 {specialties.map(s => (
-                  <RadioPill key={s.label} name="especialidad" value={s.label} checked={especialidad === s.label} onChange={setEspecialidad}>
+                  <RadioPill key={s.label} name="especialidad" value={s.label} checked={especialidad === s.label} onChange={handleEspecialidadChange}>
                     {s.emoji} {s.label}
                   </RadioPill>
                 ))}
@@ -582,23 +794,28 @@ export default function IntakeWizard() {
             </Field>
 
             <div className="grid sm:grid-cols-2 gap-3 mb-4">
-              <Field label="WhatsApp *" mb={false}>
-                <input type="tel" inputMode="tel" value={whatsapp} onChange={e => setWhatsapp(e.target.value.replace(/[^+\d\s\-]/g, ""))} placeholder="+56 9 1234 5678" className="input-field" />
-              </Field>
-              <Field label="Email" mb={false}>
-                <input type="email" inputMode="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="contacto@clinica.cl" className="input-field" />
-              </Field>
+              <ValidatedField {...getFieldValidation("whatsapp")} label="WhatsApp de contacto *" mb={false}>
+                <input type="tel" inputMode="tel" value={whatsapp} onChange={e => { const v = e.target.value; if (v === "") { setWhatsapp(""); return; } setWhatsapp(formatWhatsApp(v)); }} onBlur={() => markTouched("whatsapp")} placeholder="+56 9 1234 5678" className="input-field" />
+              </ValidatedField>
+              <ValidatedField {...getFieldValidation("email")} label="Email" mb={false}>
+                <input type="email" inputMode="email" value={email} onChange={e => setEmail(e.target.value)} onBlur={() => markTouched("email")} placeholder="contacto@clinica.cl" className="input-field" />
+              </ValidatedField>
             </div>
 
-            <Field label="Dirección *">
-              <input type="text" value={direccion} onChange={e => setDireccion(e.target.value)} placeholder="Calle, número, ciudad" className="input-field" />
-            </Field>
+            <ValidatedField {...getFieldValidation("direccion")} label="Dirección *" hint="Incluye calle, número, comuna y ciudad para que Google Maps pueda ubicarte">
+              <input type="text" value={direccion} onChange={e => setDireccion(e.target.value)} onBlur={() => markTouched("direccion")} placeholder="Ej: Av. Providencia 1234, Providencia, Santiago" className="input-field" />
+            </ValidatedField>
             <Field label="Redes sociales">
               <textarea value={redes} onChange={e => setRedes(e.target.value)} rows={2} placeholder={"Instagram: ...\nFacebook: ..."} className="input-field" />
             </Field>
-            <Field label="Dominio deseado" hint="Si ya tienes uno o tienes preferencia. Ej: sonrisaperfecta.cl">
-              <input type="text" value={dominio} onChange={e => setDominio(e.target.value.replace(/[^a-zA-Z0-9.\-]/g, ""))} placeholder="sonrisaperfecta.cl" className="input-field" />
-            </Field>
+            <ValidatedField {...getFieldValidation("dominio")} label="Dominio deseado" hint="Si ya tienes uno o tienes preferencia. Ej: sonrisaperfecta.cl">
+              <input type="text" value={dominio} onChange={e => setDominio(e.target.value.replace(/[^a-zA-Z0-9.\-]/g, ""))} onBlur={() => markTouched("dominio")} placeholder="sonrisaperfecta.cl" className="input-field" />
+              {!dominio.trim() && suggestedSlug && (
+                <p className="text-xs text-text-muted mt-1.5">
+                  Tu sitio será: <span className="font-semibold text-accent">{suggestedSlug}.dentalweb.cl</span>
+                </p>
+              )}
+            </ValidatedField>
 
             {/* Plan selector */}
             <Field label="Selecciona tu plan">
@@ -768,6 +985,15 @@ export default function IntakeWizard() {
 
             <Field label="Bio del doctor" hint="Si no la tienes, la generamos nosotros">
               <textarea value={bio} onChange={e => setBio(e.target.value)} rows={3} placeholder="Breve biografía profesional..." className="input-field" />
+              <div className="flex justify-end mt-1">
+                <span className={`text-xs font-medium tabular-nums ${
+                  bio.length > 200 ? "text-red-500" :
+                  bio.length >= 180 ? "text-amber-500" :
+                  "text-text-muted"
+                }`}>
+                  {bio.length}/200
+                </span>
+              </div>
             </Field>
 
             <Field label="¿Tienes fotos propias?">
@@ -989,6 +1215,30 @@ export default function IntakeWizard() {
                 ))}
               </div>
               <input type="text" value={sloganCustom} onChange={e => { setSloganCustom(e.target.value); setSlogan(""); }} placeholder="O escribe el tuyo aquí..." className="input-field" />
+              {(sloganCustom || slogan) && slogan !== "Sin slogan" && (
+                <div className="mt-3 p-4 rounded-xl border border-border overflow-hidden"
+                  style={{
+                    background: paleta
+                      ? `linear-gradient(135deg, ${parsePaletteLocal(paleta)?.secondary || '#e0f2fe'}, white)`
+                      : undefined,
+                  }}>
+                  <p className="text-[10px] uppercase tracking-wider text-text-muted mb-1.5 font-semibold">Preview del hero</p>
+                  <p className="text-lg sm:text-xl font-extrabold leading-tight"
+                    style={{
+                      fontFamily: estilo ? (estiloFonts[estilo] || "inherit") : "inherit",
+                      color: paleta ? (parsePaletteLocal(paleta)?.text || "inherit") : "inherit",
+                    }}>
+                    {sloganCustom || slogan}
+                  </p>
+                  {consultorio && (
+                    <p className="text-xs mt-1" style={{
+                      color: paleta ? (parsePaletteLocal(paleta)?.primary || "inherit") : "inherit",
+                    }}>
+                      {consultorio}
+                    </p>
+                  )}
+                </div>
+              )}
             </Field>
 
             <Field label="Referencia visual">

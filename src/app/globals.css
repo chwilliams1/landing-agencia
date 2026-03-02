@@ -223,3 +223,10 @@ body {
   background: #CBD5E1;
   border-radius: 3px;
 }
+
+.input-field.input-valid {
+  border-color: #22c55e;
+}
+.input-field.input-error {
+  border-color: #ef4444;
+}
