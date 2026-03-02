@@ -165,6 +165,9 @@ export default function PricingEstudiantes() {
           <p className="fade-up fade-up-delay-2 mt-3 sm:mt-4 text-text-secondary text-base sm:text-lg max-w-lg mx-auto">
             Todos los planes con <strong className="text-violet-600">30% de descuento por 6 meses</strong> para estudiantes y recién egresados de odontología.
           </p>
+          <p className="fade-up fade-up-delay-2 mt-2 text-amber-600 text-sm font-semibold">
+            Cupos limitados — Promoción válida hasta agotar disponibilidad
+          </p>
         </div>
 
         {/* Toggle */}
