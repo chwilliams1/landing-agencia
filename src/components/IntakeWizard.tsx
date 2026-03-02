@@ -420,7 +420,59 @@ export default function IntakeWizard() {
     return msg;
   }
 
+  function collectFormData() {
+    const sloganFinal = sloganCustom || slogan;
+    const horarioFinal = horario === "custom" ? horarioCustom : horario;
+    return {
+      consultorio,
+      doctor,
+      especialidad,
+      whatsapp,
+      email,
+      direccion,
+      redes,
+      dominio,
+      plan: planData.name,
+      planId: plan,
+      planPrice: planData.price,
+      servicios,
+      estrella,
+      publico,
+      pagos,
+      convenios,
+      horario: horarioFinal,
+      contacto,
+      ctaPreferido,
+      experiencia,
+      bio,
+      fotos,
+      fotosLink,
+      antesDespues,
+      testimonios,
+      diplomas: diplomas.filter(d => d.nombre),
+      equipo: equipo.filter(m => m.nombre),
+      mostrarConveniosWeb,
+      estilo,
+      paleta,
+      logo,
+      slogan: sloganFinal,
+      referencia,
+      notas,
+    };
+  }
+
   function sendWhatsApp() {
+    const formData = collectFormData();
+
+    // Fire-and-forget: guardar lead en Supabase sin bloquear el flujo
+    fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    }).catch(() => {
+      // Silencioso: no bloquear UX si falla
+    });
+
     const msg = buildWhatsAppMessage();
     const url = `https://wa.me/56984494128?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
