@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import SocialProofStrip from "@/components/SocialProofStrip";
 import DemoMagica from "@/components/DemoMagica";
 import Portfolio from "@/components/Portfolio";
+import Testimonials from "@/components/Testimonials";
 import Benefits from "@/components/Benefits";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
@@ -25,6 +26,7 @@ export default function Home() {
         <Benefits />
         <DemoMagica />
         <Portfolio />
+        <Testimonials />
         <HowItWorks />
         <AddOns />
         <AboutUs />

@@ -47,7 +47,6 @@ const plans: Plan[] = [
       { text: "Responsive (celular y computador)", included: true },
       { text: "Hosting, dominio .cl y SSL incluidos", included: true },
       { text: "Mantenimiento técnico y seguridad continua", included: true },
-      { text: "Informe mensual de rendimiento", included: false },
       { text: "Galería de casos y antes/después", included: false },
       { text: "Blog de contenido automático con IA", included: false },
     ],
@@ -66,7 +65,6 @@ const plans: Plan[] = [
     features: [
       { text: "Slider antes/después de tratamientos", included: true, highlight: true },
       { text: "Galería de casos reales", included: true, highlight: true },
-      { text: "Informe mensual de rendimiento automático", included: true, highlight: true },
       { text: "Diplomas y certificaciones", included: true },
       { text: "Testimonios de pacientes", included: true },
       { text: "Formas de pago visibles", included: true },
@@ -91,7 +89,6 @@ const plans: Plan[] = [
     features: [
       { text: "Blog automático (2 artículos/mes con IA)", included: true, highlight: true, star: true },
       { text: "Biblioteca de contenido que crece cada mes", included: true, highlight: true, star: true },
-      { text: "Informe mensual + recomendaciones IA", included: true, highlight: true, star: true },
       { text: "Hasta 10 páginas", included: true },
       { text: "Perfil de cada doctor del equipo", included: true },
       { text: "Convenios, Fonasa e isapres", included: true },
@@ -330,16 +327,6 @@ export default function Pricing() {
               <span className="text-[11px] text-text-muted mt-0.5">Entrega ultra rápida</span>
             </div>
 
-            {/* 30 días cambios — highlighted */}
-            <div className="flex flex-col items-center text-center bg-bg-card border-2 border-accent/30 rounded-xl p-4 sm:p-5 shadow-sm shadow-accent/5">
-              <div className="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mb-2">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M2.985 19.644l3.181-3.183" />
-                </svg>
-              </div>
-              <span className="text-sm font-bold text-text-primary">30 días de cambios</span>
-              <span className="text-[11px] text-text-muted mt-0.5">Ilimitados, sin costo extra</span>
-            </div>
           </div>
 
           <p className="text-text-muted text-xs max-w-md mx-auto text-center mt-5">

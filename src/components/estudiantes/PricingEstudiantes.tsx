@@ -50,7 +50,6 @@ const plans: Plan[] = [
       { text: "Responsive (celular y computador)", included: true },
       { text: "Hosting, dominio .cl y SSL incluidos", included: true },
       { text: "Mantenimiento técnico y seguridad continua", included: true },
-      { text: "Informe mensual de rendimiento", included: false },
       { text: "Galería de casos y antes/después", included: false },
       { text: "Blog de contenido automático con IA", included: false },
     ],
@@ -69,7 +68,6 @@ const plans: Plan[] = [
     features: [
       { text: "Slider antes/después de tratamientos", included: true, highlight: true },
       { text: "Galería de casos reales", included: true, highlight: true },
-      { text: "Informe mensual de rendimiento automático", included: true, highlight: true },
       { text: "Diplomas y certificaciones", included: true },
       { text: "Testimonios de pacientes", included: true },
       { text: "Formas de pago visibles", included: true },
@@ -94,7 +92,6 @@ const plans: Plan[] = [
     features: [
       { text: "Blog automático (2 artículos/mes con IA)", included: true, highlight: true, star: true },
       { text: "Biblioteca de contenido que crece cada mes", included: true, highlight: true, star: true },
-      { text: "Informe mensual + recomendaciones IA", included: true, highlight: true, star: true },
       { text: "Hasta 10 páginas", included: true },
       { text: "Perfil de cada doctor del equipo", included: true },
       { text: "Convenios, Fonasa e isapres", included: true },

@@ -36,7 +36,7 @@ export default function Terminos() {
             <h2 className="text-lg font-bold text-text-primary mb-3">2. Precios y formas de pago</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li><strong>Plan Presencia:</strong> $19.990 CLP/mes. Incluye hosting, dominio .cl, SSL y mantenimiento automático.</li>
-              <li><strong>Plan Crecimiento:</strong> $34.990 CLP/mes. Incluye todo lo de Presencia más informes de rendimiento y funcionalidades avanzadas.</li>
+              <li><strong>Plan Crecimiento:</strong> $34.990 CLP/mes. Incluye todo lo de Presencia más funcionalidades avanzadas.</li>
               <li><strong>Plan Autopilot:</strong> $49.990 CLP/mes. Incluye todo lo de Crecimiento más blog automático con IA y soporte prioritario.</li>
               <li><strong>Descuento anual:</strong> 20% de descuento en todos los planes al contratar el plan anual.</li>
               <li>Los precios pueden variar según servicios adicionales (add-ons) contratados.</li>

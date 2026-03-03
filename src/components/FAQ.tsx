@@ -12,7 +12,7 @@ const faqs = [
   {
     question: "¿Qué incluye la mensualidad?",
     answer:
-      "Hosting, dominio .cl, certificado SSL, mantenimiento técnico automático, actualizaciones de seguridad y soporte por WhatsApp. Tu web se mantiene funcionando sin que hagas nada. Los planes Crecimiento y Autopilot agregan informes de rendimiento y contenido generado por IA.",
+      "Hosting, dominio .cl, certificado SSL, mantenimiento técnico automático, actualizaciones de seguridad y soporte por WhatsApp. Tu web se mantiene funcionando sin que hagas nada. El plan Autopilot agrega contenido generado por IA.",
   },
   {
     question: "¿Tengo que hacer algo después de que mi web esté lista?",
@@ -22,7 +22,7 @@ const faqs = [
   {
     question: "¿Qué diferencia hay entre los planes?",
     answer:
-      "Presencia te da lo esencial: web profesional con dominio .cl y WhatsApp. Crecimiento agrega galería de casos, antes/después, diplomas e informes mensuales de rendimiento automáticos. Autopilot suma un blog con artículos generados por IA que crece cada mes y fortalece tu presencia digital. Puedes subir de plan cuando quieras.",
+      "Presencia te da lo esencial: web profesional con dominio .cl y WhatsApp. Crecimiento agrega galería de casos, antes/después, diplomas y funcionalidades avanzadas. Autopilot suma un blog con artículos generados por IA que crece cada mes y fortalece tu presencia digital. Puedes subir de plan cuando quieras.",
   },
   {
     question: "¿Qué pasa si cancelo mi plan?",
@@ -33,11 +33,6 @@ const faqs = [
     question: "¿Mi web se puede compartir fácilmente?",
     answer:
       "Sí. Tu web tiene dominio .cl propio que puedes compartir por WhatsApp, redes sociales, tarjeta de visita o cualquier medio. Además, está optimizada para verse perfecta en celulares, tablets y computadores.",
-  },
-  {
-    question: "¿Qué es el informe mensual de rendimiento?",
-    answer:
-      "Es un reporte automático que recibes cada mes con las métricas de tu web: visitas, clics en WhatsApp, páginas más vistas y tendencias. Disponible en los planes Crecimiento y Autopilot. No tienes que hacer nada, llega solo.",
   },
 ];
 
